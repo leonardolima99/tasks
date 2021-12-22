@@ -1,5 +1,6 @@
 import React from 'react';
 import {SafeAreaView, Text, View, ScrollView} from 'react-native';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 import styles from './styles';
 
@@ -31,7 +32,7 @@ const Tasks = () => {
     },
     {
       id: 5,
-      title: 'Submit 2019 tax return',
+      title: 'Hand sanitizer',
       category: '🛒 Shopping List',
       complete: false,
     },
@@ -79,7 +80,15 @@ const Tasks = () => {
           {list.map(item => {
             return !item.complete ? (
               <View style={styles.boxTask} key={item.id}>
-                <Text style={styles.check}>[ &nbsp; ]</Text>
+                <View style={styles.check}>
+                  {false ? (
+                    <>
+                      <View style={styles.smaller} />
+                      <View style={styles.larger} />
+                    </>
+                  ) : null}
+                </View>
+                {/* <Text style={styles.check}>[ &nbsp; ]</Text> */}
                 <View style={styles.textTask}>
                   <Text style={styles.titleTask}>{item.title}</Text>
                   <Text style={styles.categoryTask}>{item.category}</Text>
@@ -93,7 +102,10 @@ const Tasks = () => {
           {list.map(item => {
             return item.complete ? (
               <View style={styles.boxTask} key={item.id}>
-                <Text style={styles.check}>[ x ]</Text>
+                <View style={styles.check}>
+                  <View style={styles.smaller} />
+                  <View style={styles.larger} />
+                </View>
                 <View style={styles.textTask}>
                   <Text style={styles.titleTaskCompleted}>{item.title}</Text>
                 </View>
