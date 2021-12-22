@@ -6,7 +6,11 @@ import Tasks from '../screens/Tasks';
 const Stack = createStackNavigator();
 
 const Routes: React.FC = () => (
-  <Stack.Navigator initialRouteName="Tasks">
+  <Stack.Navigator
+    initialRouteName="Tasks"
+    screenOptions={{
+      headerShown: false,
+    }}>
     <Stack.Screen name="Tasks" component={Tasks} />
   </Stack.Navigator>
 );
