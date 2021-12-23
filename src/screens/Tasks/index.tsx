@@ -4,6 +4,7 @@ import {SafeAreaView, Text, View, ScrollView} from 'react-native';
 import styles from './styles';
 
 import CheckBox from '../../components/CheckBox';
+import DateFormat from '../../components/DateFormat';
 
 const Tasks = () => {
   let list = [
@@ -83,7 +84,7 @@ const Tasks = () => {
       <ScrollView>
         <View style={styles.header}>
           <Text style={styles.title}>
-            {new Date().toUTCString().substring(0, 16)}
+            <DateFormat />
           </Text>
           <Text style={styles.subTitle}>
             {tasks.filter(item => item.complete === false).length} incomplete,
