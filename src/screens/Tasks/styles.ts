@@ -4,8 +4,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Number(StatusBar.currentHeight),
-    paddingHorizontal: 16,
     backgroundColor: '#F8F8F8',
+  },
+  scroll: {
+    paddingHorizontal: 16,
   },
   header: {
     borderBottomColor: 'rgba(208, 208, 208, 0.2)',
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-SemiBold',
     marginTop: 4,
   },
-  button: {},
+  action: {},
 });
 
 export default styles;

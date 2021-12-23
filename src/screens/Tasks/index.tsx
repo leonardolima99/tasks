@@ -6,6 +6,7 @@ import styles from './styles';
 
 import CheckBox from '../../components/CheckBox';
 import DateFormat from '../../components/DateFormat';
+import Button from '../../components/Button';
 
 type TasksProps = {
   id: string;
@@ -67,7 +68,7 @@ const Tasks = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView style={styles.scroll}>
         <View style={styles.header}>
           <Text style={styles.title}>
             <DateFormat />
@@ -76,7 +77,6 @@ const Tasks = () => {
             <GetSubTitle tasks={tasks} />
           </Text>
         </View>
-
         {tasks.filter(item => item.complete === false).length > 0 ? (
           <View style={styles.tasks}>
             <Text style={styles.status}>Incomplete</Text>
@@ -112,6 +112,7 @@ const Tasks = () => {
           </View>
         ) : null}
       </ScrollView>
+      <Button type="add" />
     </SafeAreaView>
   );
 };
