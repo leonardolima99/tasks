@@ -1,13 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {SafeAreaView, Text, View, ScrollView} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 
 import styles from './styles';
 
 import CheckBox from '../../components/CheckBox';
 import DateFormat from '../../components/DateFormat';
 
+type TasksProps = {
+  id: string;
+  title: string;
+  category: string;
+  complete: boolean;
+}[];
+
 const Tasks = () => {
-  let list = [
+  const tasksCollection = firestore().collection('Tasks');
+
+  /* let list = [
     {
       id: 1,
       title: 'Upload 1099-R to TurboTax',
@@ -68,16 +78,38 @@ const Tasks = () => {
       category: '💞 Wedding',
       complete: true,
     },
-  ];
-  const [tasks, setTasks] = useState(list);
+  ]; */
 
-  const handleCheckItem = (id: number, check: boolean) => {
+  const [tasks, setTasks] = useState([] as TasksProps);
+
+  const handleCheckItem = async (id: string, check: boolean) => {
     // Importante para funcionar, criar uma variável auxiliar
-    const temp_tasks = [...tasks];
+    /* const temp_tasks = [...tasks];
     temp_tasks[id].complete = check;
 
-    setTasks(temp_tasks);
+    setTasks(temp_tasks); */
+    await firestore().collection('Tasks').doc(id).update({complete: check});
   };
+
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection('Tasks')
+      .onSnapshot(query => {
+        const list: TasksProps = [];
+        query.forEach(doc => {
+          const {title, complete, category} = doc.data();
+          list.push({
+            id: doc.id,
+            title,
+            category,
+            complete,
+          });
+        });
+        setTasks(list);
+      });
+
+    return () => subscriber();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -94,12 +126,12 @@ const Tasks = () => {
         </View>
         <View style={styles.tasks}>
           <Text style={styles.status}>Incomplete</Text>
-          {tasks.map((item, index) =>
+          {tasks.map(item =>
             !item.complete ? (
               <View style={styles.boxTask} key={item.id}>
                 <CheckBox
                   isChecked={item.complete}
-                  onPress={() => handleCheckItem(index, !item.complete)}
+                  onPress={() => handleCheckItem(item.id, !item.complete)}
                 />
                 <View style={styles.textTask}>
                   <Text style={styles.titleTask}>{item.title}</Text>
