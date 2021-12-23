@@ -15,79 +15,9 @@ type TasksProps = {
 }[];
 
 const Tasks = () => {
-  const tasksCollection = firestore().collection('Tasks');
-
-  /* let list = [
-    {
-      id: 1,
-      title: 'Upload 1099-R to TurboTax',
-      category: '💰 Finance',
-      complete: false,
-    },
-    {
-      id: 2,
-      title: 'Submit 2019 tax return',
-      category: '💰 Finance',
-      complete: false,
-    },
-    {
-      id: 3,
-      title: 'Print parking passes',
-      category: '💞 Wedding',
-      complete: false,
-    },
-    {
-      id: 4,
-      title: 'Sign contract, send back',
-      category: '🖥️ Freelance',
-      complete: false,
-    },
-    {
-      id: 5,
-      title: 'Hand sanitizer',
-      category: '🛒 Shopping List',
-      complete: false,
-    },
-    {
-      id: 6,
-      title: 'Check on FedEx Order',
-      category: '💰 Finance',
-      complete: true,
-    },
-    {
-      id: 7,
-      title: 'Look at new plugins',
-      category: '🖥️ Freelance',
-      complete: true,
-    },
-    {
-      id: 8,
-      title: 'Respond to catering company',
-      category: '💰 Finance',
-      complete: true,
-    },
-    {
-      id: 9,
-      title: 'Reschedule morning coffee',
-      category: '💞 Wedding',
-      complete: true,
-    },
-    {
-      id: 10,
-      title: 'Check the latest on Community',
-      category: '💞 Wedding',
-      complete: true,
-    },
-  ]; */
-
   const [tasks, setTasks] = useState([] as TasksProps);
 
   const handleCheckItem = async (id: string, check: boolean) => {
-    // Importante para funcionar, criar uma variável auxiliar
-    /* const temp_tasks = [...tasks];
-    temp_tasks[id].complete = check;
-
-    setTasks(temp_tasks); */
     await firestore().collection('Tasks').doc(id).update({complete: check});
   };
 
