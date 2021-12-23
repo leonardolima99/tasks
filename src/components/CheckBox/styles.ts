@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#DADADA',
     transform: [{rotate: '30deg'}, {translateX: 1.2}, {translateY: -0.6}],
   },
+  opacity: {
+    opacity: 0.2,
+  },
 });
 
 export default styles;

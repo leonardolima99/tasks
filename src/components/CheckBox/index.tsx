@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, Pressable} from 'react-native';
 
 import styles from './styles';
 
@@ -11,7 +11,10 @@ type CheckBoxProps = {
 
 const CheckBox = ({isChecked, onPress, disabled}: CheckBoxProps) => {
   return (
-    <TouchableOpacity onPress={onPress} disabled={disabled}>
+    <Pressable
+      style={({pressed}) => [pressed ? styles.opacity : null]}
+      onPress={onPress}
+      disabled={disabled}>
       <View style={styles.check}>
         {isChecked ? (
           <>
@@ -20,7 +23,7 @@ const CheckBox = ({isChecked, onPress, disabled}: CheckBoxProps) => {
           </>
         ) : null}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
