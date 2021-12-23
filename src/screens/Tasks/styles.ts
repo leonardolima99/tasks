@@ -3,13 +3,14 @@ import {StyleSheet, StatusBar} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 32 + Number(StatusBar.currentHeight),
+    paddingTop: Number(StatusBar.currentHeight),
     paddingHorizontal: 16,
     backgroundColor: '#F8F8F8',
   },
   header: {
     borderBottomColor: 'rgba(208, 208, 208, 0.2)',
     borderBottomWidth: 2,
+    marginTop: 32,
     marginBottom: 16,
   },
   title: {

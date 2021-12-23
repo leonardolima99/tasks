@@ -10,22 +10,11 @@ const DateFormat = () => {
     function formatDate(d: number) {
       let config = {
         locale: '',
-        options: {weekday: 'short' as 'short' | 'long' | 'narrow' | undefined},
+        options: {
+          weekday: 'short' as 'short' | 'long' | 'narrow' | undefined,
+          month: 'short' as 'short' | 'long' | 'narrow' | undefined,
+        },
       };
-      let monthName = [
-        'Jan.',
-        'Fev.',
-        'Mar.',
-        'Abr.',
-        'Maio',
-        'Jun.',
-        'Jul.',
-        'Ago.',
-        'Set.',
-        'Out.',
-        'Nov.',
-        'Dez.',
-      ];
 
       if (Platform.OS === 'android') {
         NativeModules.I18nManager
@@ -48,11 +37,16 @@ const DateFormat = () => {
 
       let dateNow = new Date(d);
       let day = dateNow.getDate();
-      let week = dateNow.toLocaleDateString(config.locale, config.options);
-      week = week.charAt(0).toUpperCase() + week.slice(1, 3);
-      let month = dateNow.getMonth();
+      let [month, week] = dateNow
+        .toLocaleDateString(config.locale, config.options)
+        .split(' ');
+
+      month = month === 'mai' ? month.replace('mai', 'maio') : month;
+      month = month.charAt(0).toUpperCase() + month.slice(1);
+      week = week.charAt(0).toUpperCase() + week.slice(1);
       let year = dateNow.getFullYear();
-      return `${week}, ${day} ${monthName[month]} ${year}`;
+      console.log(`${week}, ${day} ${month} ${year}`);
+      return `${week}, ${day} ${month} ${year}`;
     }
 
     let dateNow = formatDate(Date.now());
