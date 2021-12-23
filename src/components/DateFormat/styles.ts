@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
     color: '#0E0E11',
     fontSize: 32,
     marginBottom: 8,
-    fontWeight: '700',
+    fontFamily: 'Inter-Bold',
+    /* fontWeight: '700', */
   },
 });
 
