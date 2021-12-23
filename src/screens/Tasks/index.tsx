@@ -14,6 +14,30 @@ type TasksProps = {
   complete: boolean;
 }[];
 
+type GetSubTitleProps = {
+  tasks: TasksProps;
+};
+
+const GetSubTitle = ({tasks}: GetSubTitleProps) => {
+  let message = [];
+  const incomplete = tasks.filter(item => item.complete === false).length;
+  const complete = tasks.filter(item => item.complete === true).length;
+
+  if (tasks.length) {
+    if (incomplete > 0 && complete > 0) {
+      message.push(`${incomplete} incomplete, ${complete} complete`);
+    } else if (incomplete > 0) {
+      message.push(`${incomplete} incomplete`);
+    } else if (complete > 0) {
+      message.push(`${complete} complete`);
+    }
+  } else {
+    message.push('No tasks today.');
+  }
+
+  return <Text>{message[0]}</Text>;
+};
+
 const Tasks = () => {
   const [tasks, setTasks] = useState([] as TasksProps);
 
@@ -49,41 +73,44 @@ const Tasks = () => {
             <DateFormat />
           </Text>
           <Text style={styles.subTitle}>
-            {tasks.filter(item => item.complete === false).length} incomplete,
-            &nbsp;
-            {tasks.filter(item => item.complete === true).length} completed
+            <GetSubTitle tasks={tasks} />
           </Text>
         </View>
-        <View style={styles.tasks}>
-          <Text style={styles.status}>Incomplete</Text>
-          {tasks.map(item =>
-            !item.complete ? (
-              <View style={styles.boxTask} key={item.id}>
-                <CheckBox
-                  isChecked={item.complete}
-                  onPress={() => handleCheckItem(item.id, !item.complete)}
-                />
-                <View style={styles.textTask}>
-                  <Text style={styles.titleTask}>{item.title}</Text>
-                  <Text style={styles.categoryTask}>{item.category}</Text>
+
+        {tasks.filter(item => item.complete === false).length > 0 ? (
+          <View style={styles.tasks}>
+            <Text style={styles.status}>Incomplete</Text>
+            {tasks.map(item =>
+              !item.complete ? (
+                <View style={styles.boxTask} key={item.id}>
+                  <CheckBox
+                    isChecked={item.complete}
+                    onPress={() => handleCheckItem(item.id, !item.complete)}
+                  />
+                  <View style={styles.textTask}>
+                    <Text style={styles.titleTask}>{item.title}</Text>
+                    <Text style={styles.categoryTask}>{item.category}</Text>
+                  </View>
                 </View>
-              </View>
-            ) : null,
-          )}
-        </View>
-        <View style={styles.tasks}>
-          <Text style={styles.status}>Completed</Text>
-          {tasks.map(item =>
-            item.complete ? (
-              <View style={styles.boxTask} key={item.id}>
-                <CheckBox isChecked={item.complete} disabled />
-                <View style={styles.textTask}>
-                  <Text style={styles.titleTaskCompleted}>{item.title}</Text>
+              ) : null,
+            )}
+          </View>
+        ) : null}
+        {tasks.filter(item => item.complete === true).length > 0 ? (
+          <View style={styles.tasks}>
+            <Text style={styles.status}>Complete</Text>
+            {tasks.map(item =>
+              item.complete ? (
+                <View style={styles.boxTask} key={item.id}>
+                  <CheckBox isChecked={item.complete} disabled />
+                  <View style={styles.textTask}>
+                    <Text style={styles.titleTaskComplete}>{item.title}</Text>
+                  </View>
                 </View>
-              </View>
-            ) : null,
-          )}
-        </View>
+              ) : null,
+            )}
+          </View>
+        ) : null}
       </ScrollView>
     </SafeAreaView>
   );

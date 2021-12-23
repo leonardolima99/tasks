@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-Medium',
     lineHeight: 24,
   },
-  titleTaskCompleted: {
+  titleTaskComplete: {
     color: '#B9B9BE',
     fontFamily: 'Inter-Medium',
     lineHeight: 24,
