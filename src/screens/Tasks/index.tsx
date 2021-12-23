@@ -111,13 +111,10 @@ const Tasks = () => {
         </View>
         <View style={styles.tasks}>
           <Text style={styles.status}>Completed</Text>
-          {tasks.map((item, index) =>
+          {tasks.map(item =>
             item.complete ? (
               <View style={styles.boxTask} key={item.id}>
-                <CheckBox
-                  isChecked={item.complete}
-                  onPress={() => handleCheckItem(index, !item.complete)}
-                />
+                <CheckBox isChecked={item.complete} disabled />
                 <View style={styles.textTask}>
                   <Text style={styles.titleTaskCompleted}>{item.title}</Text>
                 </View>

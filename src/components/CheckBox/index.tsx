@@ -6,11 +6,12 @@ import styles from './styles';
 type CheckBoxProps = {
   isChecked: boolean;
   onPress?: () => void;
+  disabled?: boolean;
 };
 
-const CheckBox = ({isChecked, onPress}: CheckBoxProps) => {
+const CheckBox = ({isChecked, onPress, disabled}: CheckBoxProps) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} disabled={disabled}>
       <View style={styles.check}>
         {isChecked ? (
           <>
