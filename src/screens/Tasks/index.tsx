@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, Text, View, ScrollView} from 'react-native';
-import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 import styles from './styles';
 
+import CheckBox from '../../components/CheckBox';
+
 const Tasks = () => {
-  const list = [
+  let list = [
     {
       id: 1,
       title: 'Upload 1099-R to TurboTax',
@@ -67,51 +68,61 @@ const Tasks = () => {
       complete: true,
     },
   ];
+  const [tasks, setTasks] = useState(list);
+
+  const handleCheckItem = (id: number, check: boolean) => {
+    // Importante para funcionar, criar uma variável auxiliar
+    const temp_tasks = [...tasks];
+    temp_tasks[id].complete = check;
+
+    setTasks(temp_tasks);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          <Text style={styles.title}>March 9, 2020</Text>
-          <Text style={styles.subTitle}>5 incomplete, 5 completed</Text>
+          <Text style={styles.title}>
+            {new Date().toUTCString().substring(0, 16)}
+          </Text>
+          <Text style={styles.subTitle}>
+            {tasks.filter(item => item.complete === false).length} incomplete,
+            &nbsp;
+            {tasks.filter(item => item.complete === true).length} completed
+          </Text>
         </View>
         <View style={styles.tasks}>
           <Text style={styles.status}>Incomplete</Text>
-          {list.map(item => {
-            return !item.complete ? (
+          {tasks.map((item, index) =>
+            !item.complete ? (
               <View style={styles.boxTask} key={item.id}>
-                <View style={styles.check}>
-                  {false ? (
-                    <>
-                      <View style={styles.smaller} />
-                      <View style={styles.larger} />
-                    </>
-                  ) : null}
-                </View>
-                {/* <Text style={styles.check}>[ &nbsp; ]</Text> */}
+                <CheckBox
+                  isChecked={item.complete}
+                  onPress={() => handleCheckItem(index, !item.complete)}
+                />
                 <View style={styles.textTask}>
                   <Text style={styles.titleTask}>{item.title}</Text>
                   <Text style={styles.categoryTask}>{item.category}</Text>
                 </View>
               </View>
-            ) : null;
-          })}
+            ) : null,
+          )}
         </View>
         <View style={styles.tasks}>
           <Text style={styles.status}>Completed</Text>
-          {list.map(item => {
-            return item.complete ? (
+          {tasks.map((item, index) =>
+            item.complete ? (
               <View style={styles.boxTask} key={item.id}>
-                <View style={styles.check}>
-                  <View style={styles.smaller} />
-                  <View style={styles.larger} />
-                </View>
+                <CheckBox
+                  isChecked={item.complete}
+                  onPress={() => handleCheckItem(index, !item.complete)}
+                />
                 <View style={styles.textTask}>
                   <Text style={styles.titleTaskCompleted}>{item.title}</Text>
                 </View>
               </View>
-            ) : null;
-          })}
+            ) : null,
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>
