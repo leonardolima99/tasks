@@ -80,7 +80,7 @@ const Tasks = ({navigation}: Props) => {
       <ScrollView style={styles.scroll}>
         <View style={styles.header}>
           <Text style={styles.title}>
-            <DateFormat />
+            <DateFormat d={new Date()} type="isoDate" />
           </Text>
           <Text style={styles.subTitle}>
             <GetSubTitle tasks={tasks} />
