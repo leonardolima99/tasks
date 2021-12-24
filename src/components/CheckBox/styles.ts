@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     width: 2,
     height: 6,
     borderRadius: 1,
-    backgroundColor: '#DADADA',
+    backgroundColor: '#575767',
     transform: [{rotate: '-30deg'}, {translateX: -3.4}, {translateY: 1.2}],
   },
   larger: {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     width: 2,
     height: 12,
     borderRadius: 1,
-    backgroundColor: '#DADADA',
+    backgroundColor: '#575767',
     transform: [{rotate: '30deg'}, {translateX: 1.2}, {translateY: -0.6}],
   },
   opacity: {

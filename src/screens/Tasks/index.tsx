@@ -8,6 +8,9 @@ import CheckBox from '../../components/CheckBox';
 import DateFormat from '../../components/DateFormat';
 import Button from '../../components/Button';
 
+import {StackScreenProps} from '@react-navigation/stack';
+import {RootStackParamList} from '../../types/navigation';
+
 type TasksProps = {
   id: string;
   title: string;
@@ -18,6 +21,8 @@ type TasksProps = {
 type GetSubTitleProps = {
   tasks: TasksProps;
 };
+
+type Props = StackScreenProps<RootStackParamList>;
 
 const GetSubTitle = ({tasks}: GetSubTitleProps) => {
   let message = [];
@@ -39,11 +44,15 @@ const GetSubTitle = ({tasks}: GetSubTitleProps) => {
   return <Text>{message[0]}</Text>;
 };
 
-const Tasks = () => {
+const Tasks = ({navigation}: Props) => {
   const [tasks, setTasks] = useState([] as TasksProps);
 
   const handleCheckItem = async (id: string, check: boolean) => {
     await firestore().collection('Tasks').doc(id).update({complete: check});
+  };
+
+  const handleNavigateToNewTask = () => {
+    navigation.navigate('NewTask');
   };
 
   useEffect(() => {
@@ -112,7 +121,7 @@ const Tasks = () => {
           </View>
         ) : null}
       </ScrollView>
-      <Button type="add" />
+      <Button type="plus" onPress={handleNavigateToNewTask} />
     </SafeAreaView>
   );
 };
