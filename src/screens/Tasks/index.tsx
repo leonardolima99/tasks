@@ -11,6 +11,9 @@ import Button from '../../components/Button';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList} from '../../types/navigation';
 
+import formatDate from '../../utils/formatDate';
+import getDeviceLocale from '../../utils/getDeviceLocale';
+
 type TasksProps = {
   id: string;
   title: string;
@@ -56,8 +59,21 @@ const Tasks = ({navigation}: Props) => {
   };
 
   useEffect(() => {
+    const {dateEnd, dateStart} = formatDate(
+      new Date(),
+      'filter',
+      getDeviceLocale(),
+      true,
+      true,
+    ) as {
+      dateStart: Date;
+      dateEnd: Date;
+    };
+
     const subscriber = firestore()
       .collection('Tasks')
+      .where('date', '>=', dateStart)
+      .where('date', '<=', dateEnd)
       .onSnapshot(query => {
         const list: TasksProps = [];
         query.forEach(doc => {
@@ -80,7 +96,7 @@ const Tasks = ({navigation}: Props) => {
       <ScrollView style={styles.scroll}>
         <View style={styles.header}>
           <Text style={styles.title}>
-            <DateFormat d={new Date()} type="isoDate" />
+            <DateFormat d={new Date()} type="string" />
           </Text>
           <Text style={styles.subTitle}>
             <GetSubTitle tasks={tasks} />

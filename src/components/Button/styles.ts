@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: 'Inter-Bold',
     fontSize: 14,
+    color: '#FFFFFF',
   },
 });
 

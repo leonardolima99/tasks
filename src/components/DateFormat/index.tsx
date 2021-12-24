@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, NativeModules, Platform} from 'react-native';
+import {View, Text} from 'react-native';
 
 import formatDate from '../../utils/formatDate';
+import getDeviceLocale from '../../utils/getDeviceLocale';
 
 import styles from './styles';
 
@@ -14,31 +15,9 @@ const DateFormat = ({d, type}: DateFormatProps) => {
   const [date, setDate] = useState('' as string);
 
   useEffect(() => {
-    const config = {
-      locale: '' as string,
-    };
+    const locale = getDeviceLocale();
 
-    // Get device locale
-    if (Platform.OS === 'android') {
-      NativeModules.I18nManager
-        ? (config.locale = NativeModules.I18nManager.localeIdentifier.replace(
-            /_/,
-            '-',
-          ))
-        : null;
-    } else {
-      NativeModules.SettingsManager &&
-      NativeModules.SettingsManager.settings &&
-      NativeModules.SettingsManager.settings.AppleLanguages
-        ? (config.locale =
-            NativeModules.SettingsManager.settings.AppleLanguages[0].replace(
-              /_/,
-              '-',
-            ))
-        : null;
-    }
-
-    setDate(formatDate(d, type, config.locale));
+    setDate(formatDate(d, type, locale) as string);
   }, [d, type]);
 
   return (

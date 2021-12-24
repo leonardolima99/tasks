@@ -27,17 +27,12 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
     if (title && category) {
       setLoading(true);
       let date = new Date();
-      let dateNow = date.setMinutes(
-        date.getMinutes() - date.getTimezoneOffset(),
-      );
-      await firestore()
-        .collection('Tasks')
-        .add({
-          title,
-          category,
-          complete: false,
-          date: new Date(dateNow),
-        });
+      await firestore().collection('Tasks').add({
+        title,
+        category,
+        complete: false,
+        date,
+      });
       setLoading(false);
     }
   };
