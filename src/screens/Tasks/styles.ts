@@ -1,28 +1,80 @@
 import {StyleSheet, StatusBar} from 'react-native';
 
+/* const theme = useColorScheme(); */
+
+const light = StyleSheet.create({
+  container: {
+    backgroundColor: '#F8F8F8',
+  },
+  header: {
+    borderBottomColor: 'rgba(208, 208, 208, 0.2)',
+  },
+  title: {
+    color: '#0E0E11',
+  },
+  subTitle: {
+    color: '#575767',
+  },
+  status: {
+    color: '#575767',
+  },
+  titleTask: {
+    color: '#575767',
+  },
+  titleTaskComplete: {
+    color: '#B9B9BE',
+  },
+  categoryTask: {
+    color: '#B9B9BE',
+  },
+});
+
+const dark = StyleSheet.create({
+  container: {
+    backgroundColor: '#141419',
+  },
+  header: {
+    borderBottomColor: 'rgba(87, 87, 103, 0.2)',
+  },
+  title: {
+    color: '#DADADA',
+  },
+  subTitle: {
+    color: '#575767',
+  },
+  status: {
+    color: '#EBEBEB',
+  },
+  titleTask: {
+    color: '#DADADA',
+  },
+  titleTaskComplete: {
+    color: '#575767',
+  },
+  categoryTask: {
+    color: '#575767',
+  },
+});
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Number(StatusBar.currentHeight),
-    backgroundColor: '#F8F8F8',
   },
   scroll: {
     paddingHorizontal: 16,
   },
   header: {
-    borderBottomColor: 'rgba(208, 208, 208, 0.2)',
     borderBottomWidth: 2,
     marginTop: 32,
     marginBottom: 16,
   },
   title: {
-    color: '#0E0E11',
     fontSize: 32,
     marginBottom: 8,
     fontFamily: 'Inter-Bold',
   },
   subTitle: {
-    color: '#575767',
     marginBottom: 16,
     fontSize: 14,
     fontFamily: 'Inter-SemiBold',
@@ -33,30 +85,24 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#575767',
     marginBottom: 6,
   },
   boxTask: {
     marginTop: 12,
     flexDirection: 'row',
   },
-  textTask: {},
   titleTask: {
-    color: '#575767',
     fontFamily: 'Inter-Medium',
     lineHeight: 24,
   },
   titleTaskComplete: {
-    color: '#B9B9BE',
     fontFamily: 'Inter-Medium',
     lineHeight: 24,
   },
   categoryTask: {
-    color: '#B9B9BE',
     fontFamily: 'Inter-SemiBold',
     marginTop: 4,
   },
-  action: {},
 });
 
-export default styles;
+export {styles, dark, light};

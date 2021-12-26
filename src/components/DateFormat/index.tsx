@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
 
 import formatDate from '../../utils/formatDate';
 import getDeviceLocale from '../../utils/getDeviceLocale';
-
-import styles from './styles';
 
 type DateFormatProps = {
   d: Date;
@@ -20,11 +18,7 @@ const DateFormat = ({d, type}: DateFormatProps) => {
     setDate(formatDate(d, type, locale) as string);
   }, [d, type]);
 
-  return (
-    <View>
-      <Text style={styles.title}>{date}</Text>
-    </View>
-  );
+  return <Text>{date}</Text>;
 };
 
 export default DateFormat;

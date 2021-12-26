@@ -1,5 +1,35 @@
 import {StyleSheet} from 'react-native';
 
+const light = StyleSheet.create({
+  check: {
+    borderColor: '#DADADA',
+  },
+  background: {
+    backgroundColor: '#FAFAFA',
+  },
+  smaller: {
+    backgroundColor: '#575767',
+  },
+  larger: {
+    backgroundColor: '#575767',
+  },
+});
+
+const dark = StyleSheet.create({
+  check: {
+    borderColor: '#0E0E11',
+  },
+  background: {
+    backgroundColor: '#292B35',
+  },
+  smaller: {
+    backgroundColor: '#AFAFAF',
+  },
+  larger: {
+    backgroundColor: '#AFAFAF',
+  },
+});
+
 const styles = StyleSheet.create({
   check: {
     position: 'relative',
@@ -8,7 +38,6 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderWidth: 2,
-    borderColor: '#DADADA',
     borderRadius: 6,
     justifyContent: 'center',
     alignItems: 'center',
@@ -19,7 +48,6 @@ const styles = StyleSheet.create({
     width: 2,
     height: 6,
     borderRadius: 1,
-    backgroundColor: '#575767',
     transform: [{rotate: '-30deg'}, {translateX: -3.4}, {translateY: 1.2}],
   },
   larger: {
@@ -28,7 +56,6 @@ const styles = StyleSheet.create({
     width: 2,
     height: 12,
     borderRadius: 1,
-    backgroundColor: '#575767',
     transform: [{rotate: '30deg'}, {translateX: 1.2}, {translateY: -0.6}],
   },
   opacity: {
@@ -36,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default styles;
+export {styles, dark, light};
