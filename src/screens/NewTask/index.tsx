@@ -35,6 +35,7 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
         date,
       });
       setLoading(false);
+      handleNavigateToBack();
     }
   };
 
