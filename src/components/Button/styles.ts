@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
     width: 15,
     height: 40,
     alignSelf: 'flex-start',
-    backgroundColor: '#F8F8F8',
   },
   higher: {
     position: 'absolute',

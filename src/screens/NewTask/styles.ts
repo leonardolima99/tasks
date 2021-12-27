@@ -1,5 +1,31 @@
 import {StyleSheet, StatusBar} from 'react-native';
 
+const light = StyleSheet.create({
+  container: {
+    backgroundColor: '#F8F8F8',
+  },
+  title: {
+    color: '#0E0E11',
+  },
+  textInput: {
+    color: '#575767',
+    borderColor: '#B9B9BE',
+  },
+});
+
+const dark = StyleSheet.create({
+  container: {
+    backgroundColor: '#141419',
+  },
+  title: {
+    color: '#DADADA',
+  },
+  textInput: {
+    color: '#B9B9BE',
+    borderColor: '#575767',
+  },
+});
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -20,21 +46,6 @@ const styles = StyleSheet.create({
     marginTop: 24,
     fontFamily: 'Inter-SemiBold',
   },
-  titleTask: {
-    color: '#575767',
-    fontFamily: 'Inter-Medium',
-    lineHeight: 24,
-  },
-  titleTaskComplete: {
-    color: '#B9B9BE',
-    fontFamily: 'Inter-Medium',
-    lineHeight: 24,
-  },
-  categoryTask: {
-    color: '#B9B9BE',
-    fontFamily: 'Inter-SemiBold',
-    marginTop: 4,
-  },
   textInput: {
     color: '#575767',
     height: 58,
@@ -46,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default styles;
+export {styles, dark, light};

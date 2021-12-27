@@ -6,10 +6,11 @@ import {
   TextInput,
   ScrollView,
   ActivityIndicator,
+  useColorScheme,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
-import styles from './styles';
+import {styles, dark, light} from './styles';
 import Button from '../../components/Button';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList} from '../../types/navigation';
@@ -37,24 +38,39 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
     }
   };
 
+  const theme = useColorScheme();
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        theme === 'dark' ? dark.container : light.container,
+      ]}>
       <ScrollView style={styles.scroll}>
         <View style={styles.header}>
           <Button type="back" onPress={handleNavigateToBack} />
-          <Text style={styles.title}>Add Task</Text>
+          <Text
+            style={[styles.title, theme === 'dark' ? dark.title : light.title]}>
+            Add Task
+          </Text>
         </View>
         <TextInput
-          style={styles.textInput}
+          style={[
+            styles.textInput,
+            theme === 'dark' ? dark.textInput : light.textInput,
+          ]}
           placeholder="Title"
-          placeholderTextColor="#B9B9BE"
+          placeholderTextColor={theme === 'dark' ? '#575767' : '#B9B9BE'}
           value={title}
           onChangeText={setTitle}
         />
         <TextInput
-          style={styles.textInput}
+          style={[
+            styles.textInput,
+            theme === 'dark' ? dark.textInput : light.textInput,
+          ]}
           placeholder="Category"
-          placeholderTextColor="#B9B9BE"
+          placeholderTextColor={theme === 'dark' ? '#575767' : '#B9B9BE'}
           value={category}
           onChangeText={setCategory}
         />

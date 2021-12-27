@@ -1,6 +1,6 @@
 import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 
 import Routes from './routes';
 const App = () => {
@@ -13,7 +13,14 @@ const App = () => {
         translucent={true}
         backgroundColor="transparent"
       />
-      <NavigationContainer>
+      <NavigationContainer
+        theme={{
+          dark: false,
+          colors: {
+            ...DefaultTheme.colors,
+            background: '#141419',
+          },
+        }}>
         <Routes />
       </NavigationContainer>
     </>
