@@ -20,6 +20,8 @@ import {RootStackParamList} from '../../types/navigation';
 import formatDate from '../../utils/formatDate';
 import getDeviceLocale from '../../utils/getDeviceLocale';
 
+import {useTranslation} from 'react-i18next';
+
 type TasksProps = {
   id: string;
   title: string;
@@ -33,21 +35,43 @@ type GetSubTitleProps = {
 
 type Props = StackScreenProps<RootStackParamList>;
 
+const getIncompleteCount = (value: TasksProps) => {
+  return value.filter(item => item.complete === false).length;
+};
+
+const getCompleteCount = (value: TasksProps) => {
+  return value.filter(item => item.complete === true).length;
+};
+
 const GetSubTitle = ({tasks}: GetSubTitleProps) => {
+  const {t} = useTranslation('tasks');
+
   let message = [];
-  const incomplete = tasks.filter(item => item.complete === false).length;
-  const complete = tasks.filter(item => item.complete === true).length;
+  const incomplete = getIncompleteCount(tasks);
+  const complete = getCompleteCount(tasks);
 
   if (tasks.length) {
     if (incomplete > 0 && complete > 0) {
-      message.push(`${incomplete} incomplete, ${complete} complete`);
+      message.push(
+        `${incomplete} ${t('incomplete', {
+          count: incomplete,
+        }).toLowerCase()}, ${complete} ${t('complete', {
+          count: complete,
+        }).toLowerCase()}`,
+      );
     } else if (incomplete > 0) {
-      message.push(`${incomplete} incomplete`);
+      message.push(
+        `${incomplete} ${t('incomplete', {
+          count: incomplete,
+        }).toLowerCase()}`,
+      );
     } else if (complete > 0) {
-      message.push(`${complete} complete`);
+      message.push(
+        `${complete} ${t('complete', {count: complete}).toLowerCase()}`,
+      );
     }
   } else {
-    message.push('No tasks today.');
+    message.push(t('subtitle'));
   }
 
   return <Text>{message[0]}</Text>;
@@ -55,6 +79,8 @@ const GetSubTitle = ({tasks}: GetSubTitleProps) => {
 
 const Tasks = ({navigation}: Props) => {
   const [tasks, setTasks] = useState([] as TasksProps);
+
+  const {t} = useTranslation('tasks');
 
   const handleCheckItem = async (id: string, check: boolean) => {
     await firestore().collection('Tasks').doc(id).update({complete: check});
@@ -130,7 +156,7 @@ const Tasks = ({navigation}: Props) => {
                 styles.status,
                 theme === 'dark' ? dark.status : light.status,
               ]}>
-              Incomplete
+              {t('incomplete', {count: getIncompleteCount(tasks)})}
             </Text>
             {tasks.map(item =>
               !item.complete ? (
@@ -169,7 +195,7 @@ const Tasks = ({navigation}: Props) => {
                 styles.status,
                 theme === 'dark' ? dark.status : light.status,
               ]}>
-              Complete
+              {t('complete', {count: getCompleteCount(tasks)})}
             </Text>
             {tasks.map(item =>
               item.complete ? (

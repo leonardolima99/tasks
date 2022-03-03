@@ -1,8 +1,11 @@
-import React from 'react';
-import {StatusBar, useColorScheme} from 'react-native';
+import React, {Suspense} from 'react';
+import {StatusBar, useColorScheme, ActivityIndicator} from 'react-native';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 
+import './locales';
+
 import Routes from './routes';
+
 const App = () => {
   const theme = useColorScheme();
 
@@ -21,7 +24,9 @@ const App = () => {
             background: '#141419',
           },
         }}>
-        <Routes />
+        <Suspense fallback={<ActivityIndicator />}>
+          <Routes />
+        </Suspense>
       </NavigationContainer>
     </>
   );

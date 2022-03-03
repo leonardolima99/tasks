@@ -5,11 +5,11 @@
     "ph_category": "Categoria",
     "button_add": "Adicionar"
   },
-  "task": {
+  "tasks": {
     "subtitle": "Sem tarefas hoje.",
-    "incomplete_one": "Incompleta",
-    "incomplete_other": "Incompletas",
-    "complete_one": "Completa",
-    "complete_other": "Completas"
+    "incomplete": "Incompleta",
+    "incomplete_plural": "Incompletas",
+    "complete": "Completa",
+    "complete_plural": "Completas"
   }
 }
