@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, Pressable, Text} from 'react-native';
 
+import {useTranslation} from 'react-i18next';
+
 import styles from './styles';
 
 type ButtonProps = {
@@ -11,6 +13,8 @@ type ButtonProps = {
 };
 
 const Button = ({type, onPress, disabled, children}: ButtonProps) => {
+  const {t} = useTranslation('new_task');
+
   if (type === 'plus') {
     return (
       <Pressable
@@ -37,7 +41,7 @@ const Button = ({type, onPress, disabled, children}: ButtonProps) => {
           disabled ? styles.disabled : null,
         ]}>
         <Text style={[styles.buttonText, children ? styles.spacing : null]}>
-          Add
+          {t('button_add')}
         </Text>
         {children}
       </Pressable>

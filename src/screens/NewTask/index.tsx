@@ -10,8 +10,11 @@ import {
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
+import {useTranslation} from 'react-i18next';
+
 import {styles, dark, light} from './styles';
 import Button from '../../components/Button';
+
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList} from '../../types/navigation';
 
@@ -41,6 +44,8 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
 
   const theme = useColorScheme();
 
+  const {t} = useTranslation('new_task');
+
   return (
     <SafeAreaView
       style={[
@@ -52,7 +57,7 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
           <Button type="back" onPress={handleNavigateToBack} />
           <Text
             style={[styles.title, theme === 'dark' ? dark.title : light.title]}>
-            Add Task
+            {t('title')}
           </Text>
         </View>
         <TextInput
@@ -60,7 +65,7 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
             styles.textInput,
             theme === 'dark' ? dark.textInput : light.textInput,
           ]}
-          placeholder="Title"
+          placeholder={t('ph_title')}
           placeholderTextColor={theme === 'dark' ? '#575767' : '#B9B9BE'}
           value={title}
           onChangeText={setTitle}
@@ -70,7 +75,7 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
             styles.textInput,
             theme === 'dark' ? dark.textInput : light.textInput,
           ]}
-          placeholder="Category"
+          placeholder={t('ph_category')}
           placeholderTextColor={theme === 'dark' ? '#575767' : '#B9B9BE'}
           value={category}
           onChangeText={setCategory}
