@@ -7,7 +7,9 @@
   },
   "task": {
     "subtitle": "No tasks today.",
-    "incomplete": "incomplete",
-    "complete": "complete"
+    "incomplete_one": "Incomplete",
+    "incomplete_other": "Incomplete",
+    "complete_one": "Complete",
+    "complete_other": "Complete"
   }
 }
