@@ -1,0 +1,13 @@
+{
+  "new_task": {
+    "title": "Add Task",
+    "ph_title": "Title",
+    "ph_category": "Category",
+    "button_add": "Add"
+  },
+  "task": {
+    "subtitle": "No tasks today.",
+    "incomplete": "incomplete",
+    "complete": "complete"
+  }
+}

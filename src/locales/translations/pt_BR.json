@@ -1,0 +1,15 @@
+{
+  "new_task": {
+    "title": "Adicionar Tarefa",
+    "ph_title": "Título",
+    "ph_category": "Categoria",
+    "button_add": "Adicionar"
+  },
+  "task": {
+    "subtitle": "Sem tarefas hoje.",
+    "incomplete": "Incompleta",
+    "incomplete_plural": "Incompletas",
+    "complete": "Completa",
+    "complete_plural": "Completas"
+  }
+}
