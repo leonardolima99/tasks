@@ -12,7 +12,7 @@ import firestore from '@react-native-firebase/firestore';
 
 import {useTranslation} from 'react-i18next';
 
-import {styles, dark, light} from './styles';
+import styles from './styles';
 import Button from '../../components/Button';
 
 import {StackScreenProps} from '@react-navigation/stack';
@@ -47,34 +47,21 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
   const {t} = useTranslation('new_task');
 
   return (
-    <SafeAreaView
-      style={[
-        styles.container,
-        theme === 'dark' ? dark.container : light.container,
-      ]}>
+    <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scroll}>
         <View style={styles.header}>
           <Button type="back" onPress={handleNavigateToBack} />
-          <Text
-            style={[styles.title, theme === 'dark' ? dark.title : light.title]}>
-            {t('title')}
-          </Text>
+          <Text style={styles.title}>{t('title')}</Text>
         </View>
         <TextInput
-          style={[
-            styles.textInput,
-            theme === 'dark' ? dark.textInput : light.textInput,
-          ]}
+          style={styles.textInput}
           placeholder={t('ph_title')}
           placeholderTextColor={theme === 'dark' ? '#575767' : '#B9B9BE'}
           value={title}
           onChangeText={setTitle}
         />
         <TextInput
-          style={[
-            styles.textInput,
-            theme === 'dark' ? dark.textInput : light.textInput,
-          ]}
+          style={styles.textInput}
           placeholder={t('ph_category')}
           placeholderTextColor={theme === 'dark' ? '#575767' : '#B9B9BE'}
           value={category}

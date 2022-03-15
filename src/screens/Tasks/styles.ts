@@ -1,65 +1,10 @@
 import {StyleSheet, StatusBar} from 'react-native';
 
-/* const theme = useColorScheme(); */
-
-const light = StyleSheet.create({
-  container: {
-    backgroundColor: '#F8F8F8',
-  },
-  header: {
-    borderBottomColor: 'rgba(208, 208, 208, 0.2)',
-  },
-  title: {
-    color: '#0E0E11',
-  },
-  subTitle: {
-    color: '#575767',
-  },
-  status: {
-    color: '#575767',
-  },
-  titleTask: {
-    color: '#575767',
-  },
-  titleTaskComplete: {
-    color: '#B9B9BE',
-  },
-  categoryTask: {
-    color: '#B9B9BE',
-  },
-});
-
-const dark = StyleSheet.create({
-  container: {
-    backgroundColor: '#141419',
-  },
-  header: {
-    borderBottomColor: 'rgba(87, 87, 103, 0.2)',
-  },
-  title: {
-    color: '#DADADA',
-  },
-  subTitle: {
-    color: '#575767',
-  },
-  status: {
-    color: '#EBEBEB',
-  },
-  titleTask: {
-    color: '#DADADA',
-  },
-  titleTaskComplete: {
-    color: '#575767',
-  },
-  categoryTask: {
-    color: '#575767',
-  },
-});
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Number(StatusBar.currentHeight),
+    backgroundColor: '#F8F8F8',
   },
   scroll: {
     paddingHorizontal: 16,
@@ -68,16 +13,19 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     marginTop: 32,
     marginBottom: 16,
+    borderBottomColor: 'rgba(208, 208, 208, 0.2)',
   },
   title: {
     fontSize: 32,
     marginBottom: 8,
     fontFamily: 'Inter-Bold',
+    color: '#0E0E11',
   },
   subTitle: {
     marginBottom: 16,
     fontSize: 14,
     fontFamily: 'Inter-SemiBold',
+    color: '#575767',
   },
   tasks: {
     marginBottom: 32,
@@ -94,15 +42,18 @@ const styles = StyleSheet.create({
   titleTask: {
     fontFamily: 'Inter-Medium',
     lineHeight: 24,
+    color: '#575767',
   },
   titleTaskComplete: {
     fontFamily: 'Inter-Medium',
     lineHeight: 24,
+    color: '#B9B9BE',
   },
   categoryTask: {
     fontFamily: 'Inter-SemiBold',
     marginTop: 4,
+    color: '#B9B9BE',
   },
 });
 
-export {styles, dark, light};
+export default styles;

@@ -1,14 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  ScrollView,
-  useColorScheme,
-} from 'react-native';
+import {SafeAreaView, Text, View, ScrollView} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
-import {styles, light, dark} from './styles';
+import styles from './styles';
 
 import CheckBox from '../../components/CheckBox';
 import DateFormat from '../../components/DateFormat';
@@ -123,39 +117,20 @@ const Tasks = ({navigation}: Props) => {
     return () => subscriber();
   }, []);
 
-  const theme = useColorScheme() as string;
-
   return (
-    <SafeAreaView
-      style={[
-        styles.container,
-        theme === 'dark' ? dark.container : light.container,
-      ]}>
+    <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scroll}>
-        <View
-          style={[
-            styles.header,
-            theme === 'dark' ? dark.header : light.header,
-          ]}>
-          <Text
-            style={[styles.title, theme === 'dark' ? dark.title : light.title]}>
+        <View style={styles.header}>
+          <Text style={[styles.title]}>
             <DateFormat d={new Date()} type="string" />
           </Text>
-          <Text
-            style={[
-              styles.subTitle,
-              theme === 'dark' ? dark.subTitle : light.subTitle,
-            ]}>
+          <Text style={styles.subTitle}>
             <GetSubTitle tasks={tasks} />
           </Text>
         </View>
         {tasks.filter(item => item.complete === false).length > 0 ? (
           <View style={styles.tasks}>
-            <Text
-              style={[
-                styles.status,
-                theme === 'dark' ? dark.status : light.status,
-              ]}>
+            <Text style={styles.status}>
               {t('incomplete', {count: getIncompleteCount(tasks)})}
             </Text>
             {tasks.map(item =>
@@ -166,22 +141,8 @@ const Tasks = ({navigation}: Props) => {
                     onPress={() => handleCheckItem(item.id, !item.complete)}
                   />
                   <View>
-                    <Text
-                      style={[
-                        styles.titleTask,
-                        theme === 'dark' ? dark.titleTask : light.titleTask,
-                      ]}>
-                      {item.title}
-                    </Text>
-                    <Text
-                      style={[
-                        styles.categoryTask,
-                        theme === 'dark'
-                          ? dark.categoryTask
-                          : light.categoryTask,
-                      ]}>
-                      {item.category}
-                    </Text>
+                    <Text style={styles.titleTask}>{item.title}</Text>
+                    <Text style={styles.categoryTask}>{item.category}</Text>
                   </View>
                 </View>
               ) : null,
@@ -190,11 +151,7 @@ const Tasks = ({navigation}: Props) => {
         ) : null}
         {tasks.filter(item => item.complete === true).length > 0 ? (
           <View style={styles.tasks}>
-            <Text
-              style={[
-                styles.status,
-                theme === 'dark' ? dark.status : light.status,
-              ]}>
+            <Text style={styles.status}>
               {t('complete', {count: getCompleteCount(tasks)})}
             </Text>
             {tasks.map(item =>
@@ -202,15 +159,7 @@ const Tasks = ({navigation}: Props) => {
                 <View style={styles.boxTask} key={item.id}>
                   <CheckBox isChecked={item.complete} disabled />
                   <View>
-                    <Text
-                      style={[
-                        styles.titleTaskComplete,
-                        theme === 'dark'
-                          ? dark.titleTaskComplete
-                          : light.titleTaskComplete,
-                      ]}>
-                      {item.title}
-                    </Text>
+                    <Text style={styles.titleTaskComplete}>{item.title}</Text>
                   </View>
                 </View>
               ) : null,
