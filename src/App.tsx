@@ -6,9 +6,11 @@ import './locales';
 
 import Routes from './routes';
 
+import ThemeProvider from './themes/ThemeProvider';
+
 const App = () => {
   return (
-    <>
+    <ThemeProvider>
       <StatusBar
         barStyle="dark-content"
         translucent={true}
@@ -19,7 +21,7 @@ const App = () => {
           <Routes />
         </Suspense>
       </NavigationContainer>
-    </>
+    </ThemeProvider>
   );
 };
 
