@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Inter-Bold',
     marginBottom: 6,
+    color: '#575767',
   },
   boxTask: {
     marginTop: 12,
