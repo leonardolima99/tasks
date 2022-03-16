@@ -3,10 +3,8 @@ import {
   SafeAreaView,
   Text,
   View,
-  TextInput,
   ScrollView,
   ActivityIndicator,
-  useColorScheme,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
@@ -47,8 +45,6 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
     }
   };
 
-  const theme = useColorScheme();
-
   const {t} = useTranslation('new_task');
 
   return (
@@ -65,25 +61,6 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
         />
         <CustomInput
           label={t('ph_category')}
-          value={category}
-          onChangeText={setCategory}
-        />
-        <CustomInput
-          label={t('ph_title')}
-          value={title}
-          onChangeText={setTitle}
-        />
-        <TextInput
-          style={style.textInput}
-          placeholder={t('ph_title')}
-          placeholderTextColor={theme === 'dark' ? '#575767' : '#B9B9BE'}
-          value={title}
-          onChangeText={setTitle}
-        />
-        <TextInput
-          style={style.textInput}
-          placeholder={t('ph_category')}
-          placeholderTextColor={theme === 'dark' ? '#575767' : '#B9B9BE'}
           value={category}
           onChangeText={setCategory}
         />

@@ -6,6 +6,8 @@ const styles = (theme: Colors) =>
     wrap: {
       marginBottom: 16,
       position: 'relative',
+      borderBottomWidth: 2,
+      bottom: -0.5, // para simular o borderBottom do input
     },
     label: {
       position: 'absolute',
@@ -18,7 +20,6 @@ const styles = (theme: Colors) =>
       paddingHorizontal: 16,
       paddingTop: 30,
       paddingBottom: 8,
-      borderBottomWidth: 2,
       borderTopLeftRadius: 4,
       borderTopRightRadius: 4,
     },
@@ -36,7 +37,7 @@ const styles = (theme: Colors) =>
     focusLabel: {
       color: theme.colors.PRIMARY,
       fontSize: 12,
-      paddingTop: 8,
+      paddingVertical: 8,
     },
   });
 
