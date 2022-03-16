@@ -4,6 +4,7 @@ import {View, Pressable, Text} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import styles from './styles';
+import useThemedStyles from '../../themes/useThemedStyles';
 
 type ButtonProps = {
   type: string;
@@ -13,6 +14,8 @@ type ButtonProps = {
 };
 
 const Button = ({type, onPress, disabled, children}: ButtonProps) => {
+  const style = useThemedStyles(styles);
+
   const {t} = useTranslation('new_task');
 
   if (type === 'plus') {
@@ -21,12 +24,12 @@ const Button = ({type, onPress, disabled, children}: ButtonProps) => {
         onPress={onPress}
         disabled={disabled}
         style={({pressed}) => [
-          pressed ? styles.opacity : null,
-          styles.button,
-          styles.plus,
+          pressed ? style.opacity : null,
+          style.button,
+          style.plus,
         ]}>
-        <View style={styles.vertical} />
-        <View style={styles.horizontal} />
+        <View style={style.vertical} />
+        <View style={style.horizontal} />
       </Pressable>
     );
   } else if (type === 'add') {
@@ -35,12 +38,12 @@ const Button = ({type, onPress, disabled, children}: ButtonProps) => {
         onPress={onPress}
         disabled={disabled}
         style={({pressed}) => [
-          pressed ? styles.opacity : null,
-          styles.button,
-          styles.add,
-          disabled ? styles.disabled : null,
+          pressed ? style.opacity : null,
+          style.button,
+          style.add,
+          disabled ? style.disabled : null,
         ]}>
-        <Text style={[styles.buttonText, children ? styles.spacing : null]}>
+        <Text style={[style.buttonText, children ? style.spacing : null]}>
           {t('button_add')}
         </Text>
         {children}
@@ -52,12 +55,12 @@ const Button = ({type, onPress, disabled, children}: ButtonProps) => {
         onPress={onPress}
         disabled={disabled}
         style={({pressed}) => [
-          pressed ? styles.opacity : null,
-          styles.button,
-          styles.back,
+          pressed ? style.opacity : null,
+          style.button,
+          style.back,
         ]}>
-        <View style={styles.higher} />
-        <View style={styles.bottom} />
+        <View style={style.higher} />
+        <View style={style.bottom} />
       </Pressable>
     );
   }

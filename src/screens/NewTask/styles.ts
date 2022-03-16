@@ -1,34 +1,41 @@
 import {StyleSheet, StatusBar} from 'react-native';
+import {Colors} from '../../types/colors';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Number(StatusBar.currentHeight),
-    backgroundColor: '#F8F8F8',
-  },
-  scroll: {
-    paddingHorizontal: 16,
-  },
-  header: {
-    marginTop: 32,
-    marginBottom: 16,
-  },
-  title: {
-    color: '#0E0E11',
-    fontSize: 32,
-    marginBottom: 8,
-    marginTop: 24,
-    fontFamily: 'Inter-SemiBold',
-  },
-  textInput: {
-    color: '#575767',
-    height: 58,
-    paddingHorizontal: 24,
-    borderWidth: 2,
-    borderColor: '#B9B9BE',
-    borderRadius: 29,
-    marginBottom: 24,
-  },
-});
+const styles = (theme: Colors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingTop: Number(StatusBar.currentHeight),
+      backgroundColor: theme.colors.BACKGROUND,
+    },
+    scroll: {
+      paddingHorizontal: 16,
+    },
+    header: {
+      marginTop: 32,
+      marginBottom: 16,
+    },
+    title: {
+      color: theme.colors.TITLE,
+      fontSize: 32,
+      marginBottom: 8,
+      marginTop: 24,
+      fontFamily: 'Inter-SemiBold',
+    },
+    textInput: {
+      backgroundColor: theme.colors.BACKGROUND_SECONDARY,
+      color: theme.colors.INPUT_TEXT,
+      fontSize: 14,
+      /* height: 58, */
+      paddingHorizontal: 16,
+      //paddingVertical: 20,
+      paddingVertical: 19,
+      borderBottomWidth: 2,
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4,
+      borderColor: theme.colors.INPUT_BORDER,
+      marginBottom: 16,
+    },
+  });
 
 export default styles;

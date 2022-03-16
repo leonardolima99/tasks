@@ -1,60 +1,63 @@
 import {StyleSheet, StatusBar} from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Number(StatusBar.currentHeight),
-    backgroundColor: '#F8F8F8',
-  },
-  scroll: {
-    paddingHorizontal: 16,
-  },
-  header: {
-    borderBottomWidth: 2,
-    marginTop: 32,
-    marginBottom: 16,
-    borderBottomColor: 'rgba(208, 208, 208, 0.2)',
-  },
-  title: {
-    fontSize: 32,
-    marginBottom: 8,
-    fontFamily: 'Inter-Bold',
-    color: '#0E0E11',
-  },
-  subTitle: {
-    marginBottom: 16,
-    fontSize: 14,
-    fontFamily: 'Inter-SemiBold',
-    color: '#575767',
-  },
-  tasks: {
-    marginBottom: 32,
-  },
-  status: {
-    fontSize: 18,
-    fontFamily: 'Inter-Bold',
-    marginBottom: 6,
-    color: '#575767',
-  },
-  boxTask: {
-    marginTop: 12,
-    flexDirection: 'row',
-  },
-  titleTask: {
-    fontFamily: 'Inter-Medium',
-    lineHeight: 24,
-    color: '#575767',
-  },
-  titleTaskComplete: {
-    fontFamily: 'Inter-Medium',
-    lineHeight: 24,
-    color: '#B9B9BE',
-  },
-  categoryTask: {
-    fontFamily: 'Inter-SemiBold',
-    marginTop: 4,
-    color: '#B9B9BE',
-  },
-});
+import {Colors} from '../../types/colors';
+
+const styles = (theme: Colors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingTop: Number(StatusBar.currentHeight),
+      backgroundColor: theme.colors.BACKGROUND,
+    },
+    scroll: {
+      paddingHorizontal: 16,
+    },
+    header: {
+      borderBottomWidth: 2,
+      marginTop: 32,
+      marginBottom: 16,
+      borderBottomColor: theme.colors.DIVIDER,
+    },
+    title: {
+      fontSize: 32,
+      marginBottom: 8,
+      fontFamily: 'Inter-Bold',
+      color: theme.colors.TITLE,
+    },
+    subTitle: {
+      marginBottom: 16,
+      fontSize: 14,
+      fontFamily: 'Inter-SemiBold',
+      color: theme.colors.SUB_TITLE,
+    },
+    tasks: {
+      marginBottom: 32,
+    },
+    status: {
+      fontSize: 18,
+      fontFamily: 'Inter-Bold',
+      marginBottom: 6,
+      color: theme.colors.TITLE,
+    },
+    boxTask: {
+      marginTop: 12,
+      flexDirection: 'row',
+    },
+    titleTask: {
+      fontFamily: 'Inter-Medium',
+      lineHeight: 24,
+      color: theme.colors.SUB_TITLE,
+    },
+    titleTaskComplete: {
+      fontFamily: 'Inter-Medium',
+      lineHeight: 24,
+      color: theme.colors.TEXT_SECONDARY,
+    },
+    categoryTask: {
+      fontFamily: 'Inter-SemiBold',
+      marginTop: 4,
+      color: theme.colors.TEXT_SECONDARY,
+    },
+  });
 
 export default styles;

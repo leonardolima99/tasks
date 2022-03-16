@@ -3,6 +3,7 @@ import {SafeAreaView, Text, View, ScrollView} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
 import styles from './styles';
+import useThemedStyles from '../../themes/useThemedStyles';
 
 import CheckBox from '../../components/CheckBox';
 import DateFormat from '../../components/DateFormat';
@@ -72,6 +73,8 @@ const GetSubTitle = ({tasks}: GetSubTitleProps) => {
 };
 
 const Tasks = ({navigation}: Props) => {
+  const style = useThemedStyles(styles);
+
   const [tasks, setTasks] = useState([] as TasksProps);
 
   const {t} = useTranslation('tasks');
@@ -118,31 +121,31 @@ const Tasks = ({navigation}: Props) => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scroll}>
-        <View style={styles.header}>
-          <Text style={[styles.title]}>
+    <SafeAreaView style={style.container}>
+      <ScrollView style={style.scroll}>
+        <View style={style.header}>
+          <Text style={[style.title]}>
             <DateFormat d={new Date()} type="string" />
           </Text>
-          <Text style={styles.subTitle}>
+          <Text style={style.subTitle}>
             <GetSubTitle tasks={tasks} />
           </Text>
         </View>
         {tasks.filter(item => item.complete === false).length > 0 ? (
-          <View style={styles.tasks}>
-            <Text style={styles.status}>
+          <View style={style.tasks}>
+            <Text style={style.status}>
               {t('incomplete', {count: getIncompleteCount(tasks)})}
             </Text>
             {tasks.map(item =>
               !item.complete ? (
-                <View style={styles.boxTask} key={item.id}>
+                <View style={style.boxTask} key={item.id}>
                   <CheckBox
                     isChecked={item.complete}
                     onPress={() => handleCheckItem(item.id, !item.complete)}
                   />
                   <View>
-                    <Text style={styles.titleTask}>{item.title}</Text>
-                    <Text style={styles.categoryTask}>{item.category}</Text>
+                    <Text style={style.titleTask}>{item.title}</Text>
+                    <Text style={style.categoryTask}>{item.category}</Text>
                   </View>
                 </View>
               ) : null,
@@ -150,16 +153,16 @@ const Tasks = ({navigation}: Props) => {
           </View>
         ) : null}
         {tasks.filter(item => item.complete === true).length > 0 ? (
-          <View style={styles.tasks}>
-            <Text style={styles.status}>
+          <View style={style.tasks}>
+            <Text style={style.status}>
               {t('complete', {count: getCompleteCount(tasks)})}
             </Text>
             {tasks.map(item =>
               item.complete ? (
-                <View style={styles.boxTask} key={item.id}>
+                <View style={style.boxTask} key={item.id}>
                   <CheckBox isChecked={item.complete} disabled />
                   <View>
-                    <Text style={styles.titleTaskComplete}>{item.title}</Text>
+                    <Text style={style.titleTaskComplete}>{item.title}</Text>
                   </View>
                 </View>
               ) : null,

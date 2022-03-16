@@ -13,12 +13,17 @@ import firestore from '@react-native-firebase/firestore';
 import {useTranslation} from 'react-i18next';
 
 import styles from './styles';
+import useThemedStyles from '../../themes/useThemedStyles';
+
 import Button from '../../components/Button';
 
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList} from '../../types/navigation';
+import CustomInput from '../../components/CustomInput';
 
 const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
+  const style = useThemedStyles(styles);
+
   const [title, setTitle] = useState('' as string);
   const [category, setCategory] = useState('' as string);
   const [loading, setLoading] = useState(false);
@@ -47,21 +52,36 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
   const {t} = useTranslation('new_task');
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scroll}>
-        <View style={styles.header}>
+    <SafeAreaView style={style.container}>
+      <ScrollView style={style.scroll}>
+        <View style={style.header}>
           <Button type="back" onPress={handleNavigateToBack} />
-          <Text style={styles.title}>{t('title')}</Text>
+          <Text style={style.title}>{t('title')}</Text>
         </View>
+        <CustomInput
+          label={t('ph_title')}
+          value={title}
+          onChangeText={setTitle}
+        />
+        <CustomInput
+          label={t('ph_category')}
+          value={category}
+          onChangeText={setCategory}
+        />
+        <CustomInput
+          label={t('ph_title')}
+          value={title}
+          onChangeText={setTitle}
+        />
         <TextInput
-          style={styles.textInput}
+          style={style.textInput}
           placeholder={t('ph_title')}
           placeholderTextColor={theme === 'dark' ? '#575767' : '#B9B9BE'}
           value={title}
           onChangeText={setTitle}
         />
         <TextInput
-          style={styles.textInput}
+          style={style.textInput}
           placeholder={t('ph_category')}
           placeholderTextColor={theme === 'dark' ? '#575767' : '#B9B9BE'}
           value={category}

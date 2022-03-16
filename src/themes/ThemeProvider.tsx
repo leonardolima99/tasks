@@ -1,4 +1,5 @@
 import React, {ReactNode} from 'react';
+import {useColorScheme} from 'react-native';
 
 import {colors} from '../styles/colors';
 
@@ -9,7 +10,7 @@ type Props = {
 export const ThemeContext = React.createContext({});
 
 const ThemeProvider = ({children}: Props) => {
-  const isLightTheme = true; // temporary
+  const isLightTheme = useColorScheme() === 'light' ? true : false; // temporary
 
   const theme = {
     colors: isLightTheme ? colors.light : colors.dark,
