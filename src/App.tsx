@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
-import {StatusBar, ActivityIndicator} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {StatusBar, useColorScheme, ActivityIndicator} from 'react-native';
+import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 
 import './locales';
 
@@ -9,14 +9,23 @@ import Routes from './routes';
 import ThemeProvider from './themes/ThemeProvider';
 
 const App = () => {
+  const theme = useColorScheme();
+
   return (
     <ThemeProvider>
       <StatusBar
-        barStyle="dark-content"
+        barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
         translucent={true}
         backgroundColor="transparent"
       />
-      <NavigationContainer>
+      <NavigationContainer
+        theme={{
+          dark: false,
+          colors: {
+            ...DefaultTheme.colors,
+            background: '#141419',
+          },
+        }}>
         <Suspense fallback={<ActivityIndicator />}>
           <Routes />
         </Suspense>

@@ -23,7 +23,7 @@ const styles = (theme: Colors) =>
       height: 6,
       borderRadius: 1,
       transform: [{rotate: '-30deg'}, {translateX: -3.4}, {translateY: 1.2}],
-      backgroundColor: theme.colors.TEXT,
+      backgroundColor: theme.colors.CHECK,
     },
     larger: {
       position: 'absolute',
@@ -32,7 +32,7 @@ const styles = (theme: Colors) =>
       height: 12,
       borderRadius: 1,
       transform: [{rotate: '30deg'}, {translateX: 1.2}, {translateY: -0.6}],
-      backgroundColor: theme.colors.TEXT,
+      backgroundColor: theme.colors.CHECK,
     },
     opacity: {
       opacity: 0.2,

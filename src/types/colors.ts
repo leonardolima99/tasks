@@ -8,10 +8,12 @@ export type Colors = {
     TITLE: string;
     SUB_TITLE: string;
     DIVIDER: string;
+    STATUS: string;
     TEXT: string;
     TEXT_SECONDARY: string;
     SHADOW: string;
     BORDER: string;
+    CHECK: string;
     PRIMARY: string;
     DANGER: string;
     INPUT_TEXT: string;

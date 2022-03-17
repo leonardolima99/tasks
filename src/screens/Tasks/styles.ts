@@ -37,7 +37,7 @@ const styles = (theme: Colors) =>
       fontSize: 18,
       fontFamily: 'Inter-Bold',
       marginBottom: 6,
-      color: theme.colors.TITLE,
+      color: theme.colors.STATUS,
     },
     boxTask: {
       marginTop: 12,
@@ -46,7 +46,7 @@ const styles = (theme: Colors) =>
     titleTask: {
       fontFamily: 'Inter-Medium',
       lineHeight: 24,
-      color: theme.colors.SUB_TITLE,
+      color: theme.colors.TEXT,
     },
     titleTaskComplete: {
       fontFamily: 'Inter-Medium',
