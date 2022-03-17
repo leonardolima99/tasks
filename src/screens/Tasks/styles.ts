@@ -36,19 +36,20 @@ const styles = (theme: Colors) =>
     status: {
       fontSize: 18,
       fontFamily: 'Inter-Bold',
-      marginBottom: 6,
       color: theme.colors.STATUS,
     },
     boxTask: {
-      marginTop: 12,
+      marginTop: 16,
       flexDirection: 'row',
     },
     titleTask: {
+      fontSize: 14,
       fontFamily: 'Inter-Medium',
       lineHeight: 24,
       color: theme.colors.TEXT,
     },
     titleTaskComplete: {
+      fontSize: 14,
       fontFamily: 'Inter-Medium',
       lineHeight: 24,
       color: theme.colors.TEXT_SECONDARY,

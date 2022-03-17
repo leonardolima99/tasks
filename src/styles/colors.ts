@@ -17,14 +17,14 @@ const GHOST = '#B9B9BE';
 /* const ROYAL_BLUE = '#2E5CFF'; */
 const ROYAL_BLUE = '#1294F2';
 /* const DODGER_BLUE = '#3F4EA0'; */
-const DODGER_BLUE = '#3F4EA0';
+const DODGER_BLUE = '#1294F2';
 /* const LIGHT_GRAY = '#D0D0D0'; */
 const DARK_GRAY = '#AFAFAF';
 const BLACK_70 = 'rgba(0, 0, 0, .7)';
 const BLACK_50 = 'rgba(0, 0, 0, .5)';
 const BLACK_25 = 'rgba(0, 0, 0, .25)';
 const BLACK_06 = 'rgba(0, 0, 0, .06)';
-const BLACK_05 = 'rgba(0, 0, 0, .03)';
+const BLACK_03 = 'rgba(0, 0, 0, .03)';
 const WHITE_50 = 'rgba(255, 255, 255, .5)';
 const WHITE_25 = 'rgba(255, 255, 255, .25)';
 const WHITE_10 = 'rgba(255, 255, 255, .1)';
@@ -44,7 +44,7 @@ const light = {
   BACKGROUND_TERTIARY: SNOW,
   TITLE: BLACK_RUSSIAN,
   SUB_TITLE: COMET,
-  DIVIDER: BLACK_05,
+  DIVIDER: BLACK_03,
   STATUS: COMET,
   TEXT: COMET,
   TEXT_SECONDARY: GHOST,
