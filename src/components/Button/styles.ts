@@ -11,6 +11,8 @@ const styles = (theme: Colors) =>
       justifyContent: 'center',
       alignItems: 'center',
       alignSelf: 'center',
+      paddingHorizontal: 16,
+      paddingVertical: 8,
     },
     plus: {
       position: 'absolute',
@@ -29,10 +31,11 @@ const styles = (theme: Colors) =>
       flexDirection: 'row',
     },
     spacing: {
-      paddingRight: 8,
+      paddingLeft: 8,
     },
     disabled: {
       backgroundColor: '#B9B9BE90',
+      opacity: 0.3,
     },
     back: {
       width: 15,
@@ -71,8 +74,6 @@ const styles = (theme: Colors) =>
     buttonText: {
       fontFamily: 'Inter-Bold',
       fontSize: 15,
-      paddingHorizontal: 16,
-      paddingVertical: 8,
       color: theme.colors.BUTTON_TEXT,
     },
   });

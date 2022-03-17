@@ -43,10 +43,10 @@ const Button = ({type, onPress, disabled, children}: ButtonProps) => {
           style.add,
           disabled ? style.disabled : null,
         ]}>
+        {children}
         <Text style={[style.buttonText, children ? style.spacing : null]}>
           {t('button_add')}
         </Text>
-        {children}
       </Pressable>
     );
   } else if (type === 'back') {
