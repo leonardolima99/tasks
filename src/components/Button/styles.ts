@@ -11,60 +11,69 @@ const styles = (theme: Colors) =>
       justifyContent: 'center',
       alignItems: 'center',
       alignSelf: 'center',
+      flexDirection: 'row',
+    },
+    noIcon: {
       paddingHorizontal: 16,
       paddingVertical: 8,
     },
-    plus: {
-      position: 'absolute',
-      height: 56,
-      width: 56,
-      backgroundColor: theme.colors.PRIMARY,
-      borderRadius: 28,
-      shadowColor: theme.colors.PRIMARY,
-      elevation: 4,
-      bottom: 16,
-      right: 16,
+    withIcon: {
+      paddingVertical: 8,
+      paddingLeft: 8,
+      paddingRight: 16,
     },
-    add: {
-      backgroundColor: theme.colors.PRIMARY,
-      borderRadius: 4,
-      flexDirection: 'row',
-    },
-    vertical: {
-      position: 'absolute',
-      width: 2,
-      height: 16,
-      backgroundColor: theme.colors.BUTTON_TEXT,
-      zIndex: 1,
-    },
-    horizontal: {
-      width: 16,
-      height: 2,
-      backgroundColor: theme.colors.BUTTON_TEXT,
-      zIndex: 0.5,
+    onlyIcon: {
+      padding: 16,
     },
     disabled: {
       backgroundColor: '#B9B9BE90',
       opacity: 0.3,
     },
-    back: {
-      width: 'auto',
-      flexDirection: 'row',
-      alignSelf: 'flex-start',
-      paddingVertical: 5,
-      paddingLeft: 8,
-      paddingRight: 16,
+    rectangular: {
+      borderRadius: 4,
+    },
+    round: {
+      borderRadius: 50,
     },
     buttonText: {
       fontFamily: 'Inter-SemiBold',
       fontSize: 15,
-      color: theme.colors.BUTTON_TEXT,
     },
     spacing: {
       paddingLeft: 8,
     },
+    outlined: {
+      borderWidth: 2,
+    },
+    outlinePrimary: {
+      borderColor: theme.colors.PRIMARY,
+    },
+    outlineDanger: {
+      borderColor: theme.colors.DANGER,
+    },
+    backgroundPrimary: {
+      backgroundColor: theme.colors.PRIMARY,
+    },
+    backgroundDanger: {
+      backgroundColor: theme.colors.DANGER,
+    },
+    text: {
+      color: theme.colors.BUTTON_TEXT,
+    },
     primary: {
       color: theme.colors.PRIMARY,
+    },
+    danger: {
+      color: theme.colors.DANGER,
+    },
+    start: {
+      alignSelf: 'flex-start',
+    },
+    center: {
+      alignSelf: 'center',
+    },
+    end: {
+      alignSelf: 'flex-end',
     },
   });
 

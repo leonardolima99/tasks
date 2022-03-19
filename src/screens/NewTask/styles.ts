@@ -14,12 +14,15 @@ const styles = (theme: Colors) =>
     header: {
       marginTop: 32,
       marginBottom: 16,
+      borderBottomWidth: 2,
+      borderBottomColor: theme.colors.DIVIDER,
     },
     title: {
       color: theme.colors.TITLE,
       fontSize: 32,
+      lineHeight: 32,
       marginBottom: 8,
-      marginTop: 24,
+      marginTop: 16,
       fontFamily: 'Inter-SemiBold',
     },
     textInput: {

@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  ScrollView,
-  ActivityIndicator,
-} from 'react-native';
+import {SafeAreaView, Text, View, ScrollView} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
 import {useTranslation} from 'react-i18next';
@@ -52,10 +46,14 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
       <ScrollView style={style.scroll}>
         <View style={style.header}>
           <Button
-            type="back"
+            type="text"
+            form="rectangular"
             iconName="arrow-back"
-            onPress={handleNavigateToBack}
-          />
+            color="primary"
+            align="start"
+            onPress={handleNavigateToBack}>
+            {t('button_back')}
+          </Button>
           <Text style={style.title}>{t('title')}</Text>
         </View>
         <CustomInput
@@ -69,10 +67,24 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
           onChangeText={setCategory}
         />
         {!loading ? (
-          <Button type="add" onPress={handleAddTask} />
+          <Button
+            type="containered"
+            form="rectangular"
+            color="primary"
+            align="center"
+            iconName="add"
+            onPress={handleAddTask}>
+            {t('button_add')}
+          </Button>
         ) : (
-          <Button type="add" disabled>
-            <ActivityIndicator />
+          <Button
+            type="containered"
+            form="rectangular"
+            color="primary"
+            align="center"
+            disabled
+            loading>
+            {t('button_add')}
           </Button>
         )}
       </ScrollView>

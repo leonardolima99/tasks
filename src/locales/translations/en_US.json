@@ -1,5 +1,6 @@
 {
   "new_task": {
+    "button_back": "To go back",
     "title": "Add Task",
     "ph_title": "Title",
     "ph_category": "Category",

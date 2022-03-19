@@ -170,7 +170,17 @@ const Tasks = ({navigation}: Props) => {
           </View>
         ) : null}
       </ScrollView>
-      <Button type="plus" onPress={handleNavigateToNewTask} />
+      <View style={style.floatingButtonRightBottom}>
+        <Button
+          type="containered"
+          form="round"
+          iconName="add"
+          onlyIcon
+          color="primary"
+          align="end"
+          onPress={handleNavigateToNewTask}
+        />
+      </View>
     </SafeAreaView>
   );
 };

@@ -1,5 +1,6 @@
 {
   "new_task": {
+    "button_back": "Voltar",
     "title": "Adicionar Tarefa",
     "ph_title": "Título",
     "ph_category": "Categoria",

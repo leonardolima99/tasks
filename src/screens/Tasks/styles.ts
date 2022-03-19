@@ -59,6 +59,11 @@ const styles = (theme: Colors) =>
       marginTop: 4,
       color: theme.colors.TEXT_SECONDARY,
     },
+    floatingButtonRightBottom: {
+      marginRight: 16,
+      marginBottom: 16,
+      alignSelf: 'flex-end',
+    },
   });
 
 export default styles;
