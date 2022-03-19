@@ -30,34 +30,6 @@ const styles = (theme: Colors) =>
       borderRadius: 4,
       flexDirection: 'row',
     },
-    spacing: {
-      paddingLeft: 8,
-    },
-    disabled: {
-      backgroundColor: '#B9B9BE90',
-      opacity: 0.3,
-    },
-    back: {
-      width: 15,
-      height: 40,
-      alignSelf: 'flex-start',
-    },
-    higher: {
-      position: 'absolute',
-      width: 2,
-      height: 20,
-      borderRadius: 1,
-      backgroundColor: theme.colors.PRIMARY,
-      transform: [{translateY: 6.5}, {rotate: '-45deg'}],
-    },
-    bottom: {
-      position: 'absolute',
-      width: 20,
-      height: 2,
-      borderRadius: 1,
-      backgroundColor: theme.colors.PRIMARY,
-      transform: [{translateY: -6.5}, {rotate: '-45deg'}],
-    },
     vertical: {
       position: 'absolute',
       width: 2,
@@ -71,10 +43,28 @@ const styles = (theme: Colors) =>
       backgroundColor: theme.colors.BUTTON_TEXT,
       zIndex: 0.5,
     },
+    disabled: {
+      backgroundColor: '#B9B9BE90',
+      opacity: 0.3,
+    },
+    back: {
+      width: 'auto',
+      flexDirection: 'row',
+      alignSelf: 'flex-start',
+      paddingVertical: 5,
+      paddingLeft: 8,
+      paddingRight: 16,
+    },
     buttonText: {
-      fontFamily: 'Inter-Bold',
+      fontFamily: 'Inter-SemiBold',
       fontSize: 15,
       color: theme.colors.BUTTON_TEXT,
+    },
+    spacing: {
+      paddingLeft: 8,
+    },
+    primary: {
+      color: theme.colors.PRIMARY,
     },
   });
 

@@ -51,7 +51,11 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
     <SafeAreaView style={style.container}>
       <ScrollView style={style.scroll}>
         <View style={style.header}>
-          <Button type="back" onPress={handleNavigateToBack} />
+          <Button
+            type="back"
+            iconName="arrow-back"
+            onPress={handleNavigateToBack}
+          />
           <Text style={style.title}>{t('title')}</Text>
         </View>
         <CustomInput
