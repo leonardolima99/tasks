@@ -54,6 +54,7 @@ const CustomInput = ({label, onChangeText, value}: CustomInputProps) => {
 
   return (
     <Animated.View style={[style.wrap, inputStyle]}>
+      <Animated.Text style={[style.label, labelStyle]}>{label}</Animated.Text>
       <TextInput
         onFocus={() => {
           borderColor.value = withTiming(1);
@@ -74,7 +75,6 @@ const CustomInput = ({label, onChangeText, value}: CustomInputProps) => {
         value={value}
         onChangeText={onChangeText}
       />
-      <Animated.Text style={[style.label, labelStyle]}>{label}</Animated.Text>
     </Animated.View>
   );
 };
