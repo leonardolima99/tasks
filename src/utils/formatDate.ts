@@ -18,10 +18,12 @@ export default function formatDate(
 
     month = month === 'mai' ? month.replace('mai', 'maio') : month;
     month = month.charAt(0).toUpperCase() + month.slice(1);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     week = week.charAt(0).toUpperCase() + week.slice(1);
     let year = d.getFullYear();
 
-    return `${week}, ${day} ${month} ${year}`;
+    /* return `${week}, ${day} ${month} ${year}`; */
+    return `${day} ${month} ${year}`;
   } else if (type === 'isoDate') {
     d.setTime(d.getTime() - d.getTimezoneOffset() * 60 * 1000);
 

@@ -14,6 +14,7 @@ const App = () => {
   return (
     <ThemeProvider>
       <StatusBar
+        animated={true}
         barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
         translucent={true}
         backgroundColor="transparent"
