@@ -13,6 +13,11 @@ const styles = (theme: Colors) =>
       alignSelf: 'center',
       flexDirection: 'row',
     },
+    loading: {
+      paddingRight: 16,
+      paddingLeft: 12,
+      paddingVertical: 8,
+    },
     noIcon: {
       paddingHorizontal: 16,
       paddingVertical: 8,

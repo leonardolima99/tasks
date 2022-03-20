@@ -37,8 +37,6 @@ const Button = ({
   const style = useThemedStyles(styles);
   const theme = useTheme() as Colors;
 
-  /* const {t} = useTranslation('new_task'); */
-  console.log(typeof children === 'object' ? Object(children)[0] : 'nao');
   return (
     <Pressable
       onPress={onPress}
@@ -47,9 +45,10 @@ const Button = ({
         style.button,
         pressed ? style.opacity : null,
         disabled ? style.disabled : null,
-        iconName ? style.withIcon : null,
-        onlyIcon ? style.onlyIcon : null,
-        !iconName && !onlyIcon ? style.noIcon : null,
+        !iconName ? style.noIcon : null,
+        loading ? style.loading : null,
+        !onlyIcon && iconName ? style.withIcon : null,
+        onlyIcon && iconName ? style.onlyIcon : null,
         form === 'rectangular' ? style.rectangular : style.round,
         type === 'outline' ? style.outlined : null,
         type === 'outline' && color === 'primary' ? style.outlinePrimary : null,
@@ -64,6 +63,7 @@ const Button = ({
         align === 'center' ? style.center : null,
         align === 'end' ? style.end : null,
       ]}>
+      {loading ? <ActivityIndicator color={theme.colors.BUTTON_TEXT} /> : null}
       {iconName ? (
         <Icon
           name={iconName}
@@ -77,7 +77,6 @@ const Button = ({
           size={24}
         />
       ) : null}
-      {loading ? <ActivityIndicator color={theme.colors.BUTTON_TEXT} /> : null}
       {children ? (
         <Text
           style={[
@@ -87,7 +86,7 @@ const Button = ({
               : color === 'primary'
               ? style.primary
               : style.danger,
-            iconName ? style.spacing : null,
+            iconName || loading ? style.spacing : null,
           ]}>
           {children}
         </Text>
