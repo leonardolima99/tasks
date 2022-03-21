@@ -86,6 +86,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#1294F2',
     borderRadius: 18,
   },
+  pressed: {
+    borderColor: '#1294F2',
+    borderRadius: 18,
+    borderWidth: 1,
+  },
   unfocused: {
     opacity: 0.35,
   },

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, Text, View, ScrollView, Pressable} from 'react-native';
+import {SafeAreaView, Text, View, ScrollView} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
 import styles from './styles';
@@ -8,7 +8,7 @@ import useThemedStyles from '../../themes/useThemedStyles';
 import CheckBox from '../../components/CheckBox';
 import DateFormat from '../../components/DateFormat';
 import Button from '../../components/Button';
-import DatePiker from '../../components/DatePiker';
+import Datepicker from '../../components/Datepicker';
 
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList} from '../../types/navigation';
@@ -75,9 +75,9 @@ const GetSubTitle = ({tasks}: GetSubTitleProps) => {
 
 const Tasks = ({navigation}: Props) => {
   const style = useThemedStyles(styles);
-
   const [tasks, setTasks] = useState([] as TasksProps);
   const [modalVisible, setModalVisible] = useState(false);
+  const [date, setDate] = useState<Date | undefined>();
 
   const {t} = useTranslation('tasks');
 
@@ -91,7 +91,7 @@ const Tasks = ({navigation}: Props) => {
 
   useEffect(() => {
     const {dateEnd, dateStart} = formatDate(
-      new Date(),
+      date || new Date(),
       'filter',
       getDeviceLocale(),
       true,
@@ -120,16 +120,14 @@ const Tasks = ({navigation}: Props) => {
       });
 
     return () => subscriber();
-  }, []);
+  }, [date]);
 
   return (
     <SafeAreaView style={style.container}>
       <ScrollView style={style.scroll}>
         <View style={style.header}>
-          <Text
-            style={[style.title]}
-            onPress={() => setModalVisible(!modalVisible)}>
-            <DateFormat d={new Date()} type="string" />
+          <Text style={[style.title]} onPress={() => setModalVisible(true)}>
+            <DateFormat d={date || new Date()} type="string" />
           </Text>
           <Text style={style.subTitle}>
             <GetSubTitle tasks={tasks} />
@@ -173,10 +171,6 @@ const Tasks = ({navigation}: Props) => {
             )}
           </View>
         ) : null}
-
-        <Pressable onPress={() => setModalVisible(!modalVisible)}>
-          <Text style={style.title}>Abrir Modal</Text>
-        </Pressable>
       </ScrollView>
       <View style={style.floatingButtonRightBottom}>
         <Button
@@ -189,9 +183,11 @@ const Tasks = ({navigation}: Props) => {
           onPress={handleNavigateToNewTask}
         />
       </View>
-      <DatePiker
+      <Datepicker
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
+        date={date}
+        setDate={setDate}
       />
     </SafeAreaView>
   );

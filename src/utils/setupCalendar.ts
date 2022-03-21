@@ -11,7 +11,11 @@ export type DayArrayProps = {
 
 export type DaysProps = DayArrayProps[];
 
-const handlePopulateArrayDate = (arrayMonth: Array<{}>, currentDay: Date) => {
+const handlePopulateArrayDate = (
+  arrayMonth: Array<{}>,
+  currentDay: Date,
+  date: Date,
+) => {
   const today = new Date();
 
   let dayForArray: DayArrayProps = {
@@ -22,15 +26,15 @@ const handlePopulateArrayDate = (arrayMonth: Array<{}>, currentDay: Date) => {
   };
 
   if (
-    today.getDate() === currentDay.getDate() &&
-    today.getMonth() === currentDay.getMonth() &&
-    today.getFullYear() === currentDay.getFullYear()
+    today.getDate() === dayForArray.day &&
+    today.getMonth() === dayForArray.month &&
+    today.getFullYear() === dayForArray.year
   ) {
     arrayMonth.push({
       ...dayForArray,
       highlight: true,
     });
-  } else if (today.getMonth() !== currentDay.getMonth()) {
+  } else if (date.getMonth() !== currentDay.getMonth()) {
     arrayMonth.push({
       ...dayForArray,
       unfocused: true,
@@ -56,6 +60,7 @@ const getWeeksDays = (language: string) => {
 
 const buildCalendar = (date2: Date): DaysProps => {
   let arrayMonth: DaysProps = [];
+  const date = new Date(date2);
 
   // pega o último dia do mes atual
   // E guarda em lastDay
@@ -72,15 +77,16 @@ const buildCalendar = (date2: Date): DaysProps => {
     // define o dia para o primeiro dia dessa semana
     date2.setDate(date2.getDate() - date2.getDay());
   }
+
   let currentDay = date2;
 
   while (currentDay <= lastDay) {
-    handlePopulateArrayDate(arrayMonth, currentDay);
+    handlePopulateArrayDate(arrayMonth, currentDay, date);
   }
 
   if (currentDay.getDay() !== 0) {
     for (let i = currentDay.getDay(); i <= 6; i++) {
-      handlePopulateArrayDate(arrayMonth, currentDay);
+      handlePopulateArrayDate(arrayMonth, currentDay, date);
     }
   }
 
@@ -104,8 +110,6 @@ const setupCalendar = async (date: Date) => {
   const weekNames = getWeeksDays(storedLanguage);
 
   const arrayMonth = buildCalendar(date2);
-
-  console.log(date);
 
   return {header, weekNames, days: arrayMonth};
 };
