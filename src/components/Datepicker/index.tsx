@@ -67,6 +67,11 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
     setCalendar(temp);
   };
 
+  const handleTodayDate = async () => {
+    const today = new Date();
+    setDate(today);
+  };
+
   useEffect(() => {
     if (date && modalVisible) {
       setNavMonth(new Date(date));
@@ -125,7 +130,7 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
             <Pressable style={styles.buttonBack} onPress={handleBackMonth}>
               <Icon name="chevron-left" size={24} color={'#DADADA'} />
             </Pressable>
-            <Pressable style={styles.monthName}>
+            <Pressable style={styles.monthName} onPress={handleTodayDate}>
               <Text style={styles.monthNameText}>{calendar?.header}</Text>
             </Pressable>
             <Pressable style={styles.buttonNext} onPress={handleNextMonth}>
