@@ -68,34 +68,34 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
   };
 
   useEffect(() => {
-    setNavMonth(new Date());
+    if (date && modalVisible) {
+      setNavMonth(new Date(date));
+    }
+
     getCalendar(date || new Date());
-  }, [date]);
+  }, [date, modalVisible]);
 
   const renderDay = ({item}: DateProps) => {
-    const [day, month, year] = [item.year, item.month, item.day];
+    const [day, month, year] = [item.day, item.month, item.year];
 
     return (
       <Pressable
         onPress={() => {
-          setDate(new Date(day, month, year));
+          setDate(new Date(year, month, day));
           setModalVisible(false);
           setMark([day, month, year]);
-          console.log(mark[0], mark.reverse(), item.day, item.month, item.year);
         }}
         style={({pressed}) => [
           styles.day,
           item.highlight ? styles.highlight : null,
           pressed ? styles.pressed : null,
-          mark[2] === item.day &&
-          mark[1] === item.month &&
-          mark[0] === item.year
+          mark[0] === day && mark[1] === month && mark[2] === year
             ? styles.pressed
             : null,
         ]}>
         <Text
           style={[styles.dayText, item.unfocused ? styles.unfocused : null]}>
-          {item.day}
+          {day}
         </Text>
       </Pressable>
     );

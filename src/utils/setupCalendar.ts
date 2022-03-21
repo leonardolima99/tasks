@@ -89,7 +89,7 @@ const buildCalendar = (date2: Date): DaysProps => {
       handlePopulateArrayDate(arrayMonth, currentDay, date);
     }
   }
-
+  currentDay.setMonth(currentDay.getMonth() - 1);
   return arrayMonth;
 };
 
