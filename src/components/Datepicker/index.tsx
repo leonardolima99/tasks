@@ -40,10 +40,13 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
   const [calendar, setCalendar] = useState<CalendarProps>();
   const [navMonth, setNavMonth] = useState(date || new Date());
   const [mark, setMark] = useState<number[]>([0, 0, 0]);
+  const [realy, setRealy] = useState(false);
 
   const getCalendar = async (value: Date) => {
+    setRealy(false);
     const temp = await setupCalendar(value);
     setCalendar(temp);
+    setRealy(true);
   };
 
   /* const handleMonth = async (next: boolean) => {
@@ -55,22 +58,28 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
   }; */
 
   const handleBackMonth = async () => {
+    setRealy(false);
     navMonth.setMonth(navMonth.getMonth() - 1);
     setNavMonth(new Date(navMonth));
     const temp = await setupCalendar(navMonth);
     setCalendar(temp);
+    setRealy(true);
   };
 
   const handleNextMonth = async () => {
+    setRealy(false);
     navMonth.setMonth(navMonth.getMonth() + 1);
     setNavMonth(new Date(navMonth));
     const temp = await setupCalendar(navMonth);
     setCalendar(temp);
+    setRealy(true);
   };
 
   const handleTodayDate = async () => {
+    setRealy(false);
     const today = new Date();
     setDate(today);
+    setRealy(true);
   };
 
   useEffect(() => {
@@ -87,9 +96,11 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
     return (
       <Pressable
         onPress={() => {
+          setRealy(false);
           setDate(new Date(year, month, day));
           setModalVisible(false);
           setMark([day, month, year]);
+          setRealy(true);
         }}
         style={({pressed}) => [
           styles.day,
@@ -126,38 +137,42 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
       <Pressable
         style={styles.centeredView}
         onPress={() => setModalVisible(false)}>
-        {calendar ? (
-          <View style={styles.calendar}>
-            <View style={styles.month}>
-              <Pressable style={styles.buttonBack} onPress={handleBackMonth}>
-                <Icon name="chevron-left" size={24} color={'#DADADA'} />
-              </Pressable>
-              <Pressable style={styles.monthName} onPress={handleTodayDate}>
-                <Text style={styles.monthNameText}>{calendar?.header}</Text>
-              </Pressable>
-              <Pressable style={styles.buttonNext} onPress={handleNextMonth}>
-                <Icon name="navigate-next" size={24} color={'#DADADA'} />
-              </Pressable>
-            </View>
-            <View style={styles.weeks}>
-              {calendar?.weekNames.map((item, index) => (
-                <View style={styles.dayWeek} key={index}>
-                  <Text style={styles.dayWeekText}>{item}</Text>
-                </View>
-              ))}
-            </View>
-            <View style={styles.days}>
-              <FlatList
-                data={calendar?.days}
-                renderItem={renderDay}
-                keyExtractor={item => String(item.day + item.month + item.year)}
-                numColumns={7}
-              />
-            </View>
-          </View>
-        ) : (
-          <ActivityIndicator />
-        )}
+        <View style={styles.calendar}>
+          {realy ? (
+            <>
+              <View style={styles.month}>
+                <Pressable style={styles.buttonBack} onPress={handleBackMonth}>
+                  <Icon name="chevron-left" size={24} color={'#DADADA'} />
+                </Pressable>
+                <Pressable style={styles.monthName} onPress={handleTodayDate}>
+                  <Text style={styles.monthNameText}>{calendar?.header}</Text>
+                </Pressable>
+                <Pressable style={styles.buttonNext} onPress={handleNextMonth}>
+                  <Icon name="navigate-next" size={24} color={'#DADADA'} />
+                </Pressable>
+              </View>
+              <View style={styles.weeks}>
+                {calendar?.weekNames.map((item, index) => (
+                  <View style={styles.dayWeek} key={index}>
+                    <Text style={styles.dayWeekText}>{item}</Text>
+                  </View>
+                ))}
+              </View>
+              <View style={styles.days}>
+                <FlatList
+                  data={calendar?.days}
+                  renderItem={renderDay}
+                  keyExtractor={item =>
+                    String(item.day + item.month + item.year)
+                  }
+                  numColumns={7}
+                />
+              </View>
+            </>
+          ) : (
+            <ActivityIndicator size="large" color={'#dadada'} />
+          )}
+        </View>
       </Pressable>
     </Modal>
   );

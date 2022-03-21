@@ -9,10 +9,12 @@ const styles = StyleSheet.create({
   },
   calendar: {
     width: 284,
+    minHeight: 248,
     margin: 20,
     backgroundColor: '#141419',
     borderRadius: 8,
     padding: 16,
+    justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#141419',
     shadowOffset: {
