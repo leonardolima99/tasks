@@ -8,6 +8,7 @@ import {
   StatusBar,
   Text,
   View,
+  ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -125,37 +126,38 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
       <Pressable
         style={styles.centeredView}
         onPress={() => setModalVisible(false)}>
-        <View style={styles.calendar}>
-          <View style={styles.month}>
-            <Pressable style={styles.buttonBack} onPress={handleBackMonth}>
-              <Icon name="chevron-left" size={24} color={'#DADADA'} />
-            </Pressable>
-            <Pressable style={styles.monthName} onPress={handleTodayDate}>
-              <Text style={styles.monthNameText}>{calendar?.header}</Text>
-            </Pressable>
-            <Pressable style={styles.buttonNext} onPress={handleNextMonth}>
-              <Icon name="navigate-next" size={24} color={'#DADADA'} />
-            </Pressable>
-          </View>
-          <View style={styles.weeks}>
-            {calendar?.weekNames.map((item, index) => (
-              <Pressable style={styles.dayWeek} key={index}>
-                <Text style={styles.dayWeekText}>{item}</Text>
+        {calendar ? (
+          <View style={styles.calendar}>
+            <View style={styles.month}>
+              <Pressable style={styles.buttonBack} onPress={handleBackMonth}>
+                <Icon name="chevron-left" size={24} color={'#DADADA'} />
               </Pressable>
-            ))}
+              <Pressable style={styles.monthName} onPress={handleTodayDate}>
+                <Text style={styles.monthNameText}>{calendar?.header}</Text>
+              </Pressable>
+              <Pressable style={styles.buttonNext} onPress={handleNextMonth}>
+                <Icon name="navigate-next" size={24} color={'#DADADA'} />
+              </Pressable>
+            </View>
+            <View style={styles.weeks}>
+              {calendar?.weekNames.map((item, index) => (
+                <View style={styles.dayWeek} key={index}>
+                  <Text style={styles.dayWeekText}>{item}</Text>
+                </View>
+              ))}
+            </View>
+            <View style={styles.days}>
+              <FlatList
+                data={calendar?.days}
+                renderItem={renderDay}
+                keyExtractor={item => String(item.day + item.month + item.year)}
+                numColumns={7}
+              />
+            </View>
           </View>
-          <View style={styles.days}>
-            <FlatList
-              data={calendar?.days}
-              renderItem={renderDay}
-              keyExtractor={item => String(item.day + item.month + item.year)}
-              numColumns={7}
-            />
-          </View>
-        </View>
-        <Pressable>
-          <Text>Fechar</Text>
-        </Pressable>
+        ) : (
+          <ActivityIndicator />
+        )}
       </Pressable>
     </Modal>
   );
