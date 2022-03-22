@@ -44,7 +44,8 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
 
   const getCalendar = async (value: Date) => {
     setRealy(false);
-    const temp = await setupCalendar(value);
+    const dateTemp = value;
+    const temp = await setupCalendar(dateTemp);
     setCalendar(temp);
     setRealy(true);
   };
@@ -86,8 +87,8 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
     if (date && modalVisible) {
       setNavMonth(new Date(date));
     }
-
     getCalendar(date || new Date());
+    console.log('asas', date);
   }, [date, modalVisible]);
 
   const renderDay = ({item}: DateProps) => {
@@ -98,6 +99,7 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
         onPress={() => {
           setRealy(false);
           setDate(new Date(year, month, day));
+          console.log(date);
           setModalVisible(false);
           setMark([day, month, year]);
           setRealy(true);

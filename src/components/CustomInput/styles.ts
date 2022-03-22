@@ -39,6 +39,12 @@ const styles = (theme: Colors) =>
       fontSize: 12,
       paddingVertical: 8,
     },
+    icon: {
+      position: 'absolute',
+      right: 16,
+      paddingVertical: 22,
+      justifyContent: 'center',
+    },
   });
 
 export default styles;

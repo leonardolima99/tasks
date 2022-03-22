@@ -1,5 +1,6 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {TextInput} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './styles';
 import useThemedStyled from '../../themes/useThemedStyles';
@@ -15,16 +16,20 @@ import Animated, {
 type CustomInputProps = {
   label: string;
   value: string;
-  onChangeText: Dispatch<SetStateAction<string>>;
+  onChangeText?: Dispatch<SetStateAction<string>>;
+  iconName?: string;
+  editable?: boolean;
 };
 
-const CustomInput = ({label, onChangeText, value}: CustomInputProps) => {
+const CustomInput = ({
+  label,
+  value,
+  onChangeText = undefined,
+  iconName,
+  editable = true,
+}: CustomInputProps) => {
   const theme = useTheme() as Colors;
   const style = useThemedStyled(styles);
-
-  /* const [focus, setFocus] = useState(0); */
-
-  //const animatedIsFocused = new Animated.Value(0);
 
   const borderColor = useSharedValue(0);
   const color = useSharedValue(0);
@@ -55,7 +60,27 @@ const CustomInput = ({label, onChangeText, value}: CustomInputProps) => {
   return (
     <Animated.View style={[style.wrap, inputStyle]}>
       <Animated.Text style={[style.label, labelStyle]}>{label}</Animated.Text>
+      {iconName ? (
+        <Icon
+          name={iconName}
+          size={24}
+          color={
+            value.toLocaleString()
+              ? theme.colors.PRIMARY
+              : theme.colors.INPUT_TEXT
+          }
+          style={style.icon}
+        />
+      ) : null}
       <TextInput
+        onLayout={() => {
+          if (value) {
+            borderColor.value = withTiming(1);
+            color.value = withTiming(1);
+            paddingVertical.value = 8;
+            fontSize.value = 12;
+          }
+        }}
         onFocus={() => {
           borderColor.value = withTiming(1);
           color.value = withTiming(1);
@@ -63,7 +88,6 @@ const CustomInput = ({label, onChangeText, value}: CustomInputProps) => {
           fontSize.value = 12;
         }}
         onBlur={() => {
-          console.log(value);
           if (!value) {
             borderColor.value = 0;
             color.value = 0;
@@ -74,6 +98,7 @@ const CustomInput = ({label, onChangeText, value}: CustomInputProps) => {
         style={style.textInput}
         value={value}
         onChangeText={onChangeText}
+        editable={editable}
       />
     </Animated.View>
   );

@@ -60,7 +60,9 @@ const getWeeksDays = (language: string) => {
 
 const buildCalendar = (date2: Date): DaysProps => {
   let arrayMonth: DaysProps = [];
+  console.log('start', date2);
   const date = new Date(date2);
+  const time = date.getTime();
 
   // pega o último dia do mes atual
   // E guarda em lastDay
@@ -89,13 +91,16 @@ const buildCalendar = (date2: Date): DaysProps => {
       handlePopulateArrayDate(arrayMonth, currentDay, date);
     }
   }
-  currentDay.setMonth(currentDay.getMonth() - 1);
+  /* currentDay.setMonth(currentDay.getMonth() - 1); */
+  currentDay.setTime(time); // Para voltar na data atual.
+
   return arrayMonth;
 };
 
 const setupCalendar = async (date: Date) => {
   /* const date = new Date(); */
   let date2 = date;
+  console.log('function', date2);
   const storedLanguage = (await AsyncStorage.getItem('language')) as string;
 
   const monthNameLower = date.toLocaleDateString(storedLanguage || 'en-US', {

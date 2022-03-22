@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, Text, View, ScrollView} from 'react-native';
+import {SafeAreaView, Text, View, ScrollView, Pressable} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
 import {useTranslation} from 'react-i18next';
@@ -12,12 +12,15 @@ import Button from '../../components/Button';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList} from '../../types/navigation';
 import CustomInput from '../../components/CustomInput';
+import Datepicker from '../../components/Datepicker';
 
 const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
   const style = useThemedStyles(styles);
 
   const [title, setTitle] = useState('' as string);
   const [category, setCategory] = useState('' as string);
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleNavigateToBack = () => {
@@ -27,7 +30,6 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
   const handleAddTask = async () => {
     if (title && category) {
       setLoading(true);
-      let date = new Date();
       await firestore().collection('Tasks').add({
         title,
         category,
@@ -66,6 +68,15 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
           value={category}
           onChangeText={setCategory}
         />
+        <Pressable onPress={() => setModalVisible(true)}>
+          <CustomInput
+            label={'Data'}
+            value={date?.toLocaleDateString() || ''}
+            /* value={date} */
+            iconName="event"
+            editable={false}
+          />
+        </Pressable>
         {!loading ? (
           <Button
             type="containered"
@@ -88,6 +99,12 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
           </Button>
         )}
       </ScrollView>
+      <Datepicker
+        date={date}
+        setDate={setDate}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
     </SafeAreaView>
   );
 };
