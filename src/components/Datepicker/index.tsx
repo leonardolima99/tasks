@@ -80,6 +80,7 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
     setRealy(false);
     const today = new Date();
     setDate(today);
+    setMark([today.getDate(), today.getMonth(), today.getFullYear()]);
     setRealy(true);
   };
 
