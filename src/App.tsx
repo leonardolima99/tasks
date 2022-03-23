@@ -7,6 +7,7 @@ import './locales';
 import Routes from './routes';
 
 import ThemeProvider from './themes/ThemeProvider';
+import {colors} from './styles/colors';
 
 const App = () => {
   const theme = useColorScheme();
@@ -24,7 +25,10 @@ const App = () => {
           dark: false,
           colors: {
             ...DefaultTheme.colors,
-            background: '#141419',
+            background:
+              theme === 'dark'
+                ? colors.dark.BACKGROUND
+                : colors.light.BACKGROUND,
           },
         }}>
         <Suspense fallback={<ActivityIndicator />}>

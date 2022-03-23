@@ -20,4 +20,5 @@ export type Colors = {
     INPUT_BORDER: string;
     PLACEHOLDER: string;
   };
+  isLightTheme: boolean;
 };

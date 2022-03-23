@@ -18,6 +18,9 @@ import setupCalendar, {
 } from '../../utils/setupCalendar';
 
 import styles from './styles';
+import useThemedStyles from '../../themes/useThemedStyles';
+import useTheme from '../../themes/useTheme';
+import {Colors} from '../../types/colors';
 
 type Props = {
   modalVisible: boolean;
@@ -37,6 +40,9 @@ type DateProps = {
 };
 
 const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
+  const style = useThemedStyles(styles);
+  const theme = useTheme() as Colors;
+
   const [calendar, setCalendar] = useState<CalendarProps>();
   const [navMonth, setNavMonth] = useState(date || new Date());
   const [mark, setMark] = useState<number[]>([0, 0, 0]);
@@ -106,15 +112,19 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
           setRealy(true);
         }}
         style={({pressed}) => [
-          styles.day,
-          item.highlight ? styles.highlight : null,
-          pressed ? styles.pressed : null,
+          style.day,
+          item.highlight ? style.highlight : null,
+          pressed ? style.pressed : null,
           mark[0] === day && mark[1] === month && mark[2] === year
-            ? styles.pressed
+            ? style.pressed
             : null,
         ]}>
         <Text
-          style={[styles.dayText, item.unfocused ? styles.unfocused : null]}>
+          style={[
+            style.dayText,
+            item.unfocused ? style.unfocused : null,
+            item.highlight ? style.textHighlight : null,
+          ]}>
           {day}
         </Text>
       </Pressable>
@@ -133,35 +143,42 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
       <StatusBar
         animated={true}
         showHideTransition={'fade'}
-        barStyle="light-content"
         translucent={true}
-        backgroundColor="rgba(0, 0, 0, 0.7)"
+        backgroundColor={theme.colors.BACKGROUND_TRANSPARENT}
       />
       <Pressable
-        style={styles.centeredView}
+        style={style.centeredView}
         onPress={() => setModalVisible(false)}>
-        <View style={styles.calendar}>
+        <View style={style.calendar}>
           {realy ? (
             <>
-              <View style={styles.month}>
-                <Pressable style={styles.buttonBack} onPress={handleBackMonth}>
-                  <Icon name="chevron-left" size={24} color={'#DADADA'} />
+              <View style={style.month}>
+                <Pressable style={style.buttonBack} onPress={handleBackMonth}>
+                  <Icon
+                    name="chevron-left"
+                    size={24}
+                    color={theme.colors.TITLE}
+                  />
                 </Pressable>
-                <Pressable style={styles.monthName} onPress={handleTodayDate}>
-                  <Text style={styles.monthNameText}>{calendar?.header}</Text>
+                <Pressable style={style.monthName} onPress={handleTodayDate}>
+                  <Text style={style.monthNameText}>{calendar?.header}</Text>
                 </Pressable>
-                <Pressable style={styles.buttonNext} onPress={handleNextMonth}>
-                  <Icon name="navigate-next" size={24} color={'#DADADA'} />
+                <Pressable style={style.buttonNext} onPress={handleNextMonth}>
+                  <Icon
+                    name="navigate-next"
+                    size={24}
+                    color={theme.colors.TITLE}
+                  />
                 </Pressable>
               </View>
-              <View style={styles.weeks}>
+              <View style={style.weeks}>
                 {calendar?.weekNames.map((item, index) => (
-                  <View style={styles.dayWeek} key={index}>
-                    <Text style={styles.dayWeekText}>{item}</Text>
+                  <View style={style.dayWeek} key={index}>
+                    <Text style={style.dayWeekText}>{item}</Text>
                   </View>
                 ))}
               </View>
-              <View style={styles.days}>
+              <View style={style.days}>
                 <FlatList
                   data={calendar?.days}
                   renderItem={renderDay}
@@ -173,7 +190,7 @@ const Datepicker = ({modalVisible, setModalVisible, date, setDate}: Props) => {
               </View>
             </>
           ) : (
-            <ActivityIndicator size="large" color={'#dadada'} />
+            <ActivityIndicator size="large" color={theme.colors.TITLE} />
           )}
         </View>
       </Pressable>

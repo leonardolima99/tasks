@@ -14,6 +14,7 @@ const ThemeProvider = ({children}: Props) => {
 
   const theme = {
     colors: isLightTheme ? colors.light : colors.dark,
+    isLightTheme,
   };
 
   return (
