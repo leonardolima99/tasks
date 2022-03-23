@@ -45,7 +45,7 @@ const NewTask = ({navigation}: StackScreenProps<RootStackParamList>) => {
 
   return (
     <SafeAreaView style={style.container}>
-      <ScrollView style={style.scroll}>
+      <ScrollView style={style.scroll} keyboardShouldPersistTaps={'always'}>
         <View style={style.header}>
           <Button
             type="text"
